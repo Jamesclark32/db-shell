@@ -63,4 +63,12 @@ return [
      *      cat - A common feline dialect, useful primarily for testing locale functionality
      */
     'locale' => 'en',
+
+    /*
+     * If you would like db-tinker to verify the display of large results sets,
+     * ensure this confirm_large_result_set_display variable is set to true.
+     * You can also fine-tune the threshold which constitutes large here.
+     */
+    'confirm_large_result_set_display' => true,
+    'confirm_large_result_set_limit' => 250,
 ];
