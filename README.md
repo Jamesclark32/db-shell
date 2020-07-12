@@ -78,18 +78,18 @@ If you're using this package, I'd love to hear your thoughts about it!
  
 ## TODO: 
 
-add tests
-
-prevent `control + C` exit (and update usage doc to reflect this)
-
-formatable and smarter user input
-
 bold abstraction
 
 configurable prompt
 
-configurable table stype (via symfony console table options)
-
-improve documentation. flesh out information and add some pictures.
+configurable table style (via symfony console table options)
 
 required refactoring in src/Output/SelectStatement.php:45
+
+add tests
+
+formatable and smarter user input
+
+prevent `control + C` exit (and update usage doc to reflect this)
+
+improve documentation. flesh out information and add some pictures.
