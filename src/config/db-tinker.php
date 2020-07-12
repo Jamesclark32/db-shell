@@ -7,6 +7,8 @@ return [
     'colors' => [
         'responses' => [
             'delete' => 'green',
+            'error' => 'green',
+            'exit' => 'green',
             'footer' => 'green',
             'insert' => 'green',
             'reconnecting' => 'green',

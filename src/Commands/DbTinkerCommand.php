@@ -3,6 +3,7 @@
 namespace JamesClark32\DbTinker\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use JamesClark32\DbTinker\DbWrapper;
 use JamesClark32\DbTinker\History;
@@ -63,6 +64,13 @@ class DbTinkerCommand extends Command
         $this->reconnectIfShould();
 
         if ($this->query->getNormalizedQueryText()) {
+
+            if ($this->query->getNormalizedQueryText()==='exit'){
+
+                $this->outputWrapper->outputExit();
+
+                exit;
+            }
 
             $this->processQuery();
         }

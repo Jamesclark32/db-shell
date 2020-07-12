@@ -5,6 +5,7 @@ return [
     'database_changed' => 'purr',
     'delete_response' => 'purr',
     'error' => 'hiss',
+    'exit' => 'meow',
     'footer' => 'purr',
     'insert_response' => 'purr',
     'no_error_message' => 'hiss',

@@ -5,6 +5,7 @@ return [
     'database_changed' => 'Database changed',
     'delete_response' => 'Query OK, :count row affected (:seconds sec)',
     'error' => 'ERROR :errorCode (:errorNumber): :errorMessage',
+    'exit' => 'Bye',
     'footer' => '{0} Empty set (:seconds sec)|[1,*] :count rows in set (:seconds sec)',
     'insert_response' => 'Query OK, :count row affected (:seconds sec)',
     'no_error_message' => '[ no error message provided ]',

@@ -35,7 +35,7 @@ This will start a long-running process which will allow you to directly input sq
 
 For the most part, this will behave like the mysql cli client.
 
-You can exit the interface at any time by pressing `control + C`  
+You can exit the interface at any time by typing `exit`. Pressing `control + C` currently also exits, but this is considered a bug.  
 
 ## Configuration
 See the Publishing Configs section for instructions to make the config file available to modify.
@@ -80,7 +80,6 @@ auto width-based \g \G switching  @ src/Output/SelectStatement.php:44
 
 add tests
 
-exit on `exit` input
 prevent `control + C` exit (and update usage doc to reflect this)
 
 formatable and smarter user input

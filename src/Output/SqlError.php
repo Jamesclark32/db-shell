@@ -14,7 +14,7 @@ class SqlError extends BaseStatement implements StatementInterface
             'errorMessage' => Arr::get($this->results, 'errorMessage', trans('db-tinker.no_error')),
         ]);
 
-        $outputTextColor = 'white';//@TODO: load color from config
+        $outputTextColor = config('db-tinker.colors.responses.error', 'white');
         $decoratedOutputText = $this->lineDecorator->getDecoratedLine($outputText, $outputTextColor);
 
         $this->outputStyle->writeln($decoratedOutputText);

@@ -5,6 +5,7 @@ namespace JamesClark32\DbTinker;
 use Illuminate\Console\OutputStyle;
 use Illuminate\Support\Arr;
 use JamesClark32\DbTinker\Output\DeleteStatement;
+use JamesClark32\DbTinker\Output\ExitDbTinker;
 use JamesClark32\DbTinker\Output\InsertStatement;
 use JamesClark32\DbTinker\Output\SelectStatement;
 use JamesClark32\DbTinker\Output\SqlError;
@@ -15,6 +16,7 @@ class OutputWrapper
 {
     protected ?array $results = [];
     protected DeleteStatement $deleteStatement;
+    protected ExitDbTinker $exitDbTinker;
     protected float $processingTime;
     protected InsertStatement $insertStatement;
     protected LineDecorator $lineDecorator;
@@ -27,6 +29,7 @@ class OutputWrapper
 
     public function __construct(
         DeleteStatement $deleteStatement,
+        ExitDbTinker $exitDbTinker,
         InsertStatement $insertStatement,
         LineDecorator $lineDecorator,
         SelectStatement $selectStatement,
@@ -39,6 +42,7 @@ class OutputWrapper
         $this->useStatement = $useStatement;
         $this->insertStatement = $insertStatement;
         $this->deleteStatement = $deleteStatement;
+        $this->exitDbTinker = $exitDbTinker;
         $this->updateStatement = $updateStatement;
         $this->selectStatement = $selectStatement;
         $this->sqlError = $sqlError;
@@ -110,6 +114,15 @@ class OutputWrapper
             ->setLineDecorator($this->lineDecorator)
             ->setOutputStyle($this->outputStyle)
             ->setResults(Arr::get($this->results, 'error'))
+            ->render();
+    }
+
+    public function outputExit(): void
+    {
+        $this->exitDbTinker
+            ->setLineDecorator($this->lineDecorator)
+            ->setOutputStyle($this->outputStyle)
+            ->setResults($this->results)
             ->render();
     }
 
