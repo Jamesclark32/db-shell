@@ -20,6 +20,7 @@ class DbTinkerServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/../config/db-tinker.php' => config_path('db-tinker.php'),
+            __DIR__ . '/../lang/' => resource_path('lang/vendor/db-tinker'),
         ]);
 
         if ($this->app->runningInConsole()) {
