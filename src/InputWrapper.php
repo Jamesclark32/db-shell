@@ -21,6 +21,11 @@ class InputWrapper
         return $this->query;
     }
 
+    public function setUserInput(string $userInput): void
+    {
+        $this->query->setQueryText($userInput);
+    }
+
     public function setConnectionName(string $connectionName): self
     {
         $this->connectionName = $connectionName;
@@ -31,6 +36,11 @@ class InputWrapper
     {
         $this->history = $history;
         return $this;
+    }
+
+    public function getQuery(): Query
+    {
+        return $this->query;
     }
 
     protected function fetchUserInput(): string

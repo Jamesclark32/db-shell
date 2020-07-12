@@ -9,11 +9,14 @@ class InputWrapperTest extends TestCase
 {
     public function test_it_normalized_user_input()
     {
-        $inputWrapper = new InputWrapper();
+        $inputWrapper = app()->make(InputWrapper::class);
 
         foreach ($this->getTransformations() as $before => $after) {
 
-            $normalized = $inputWrapper->setUserInput($before)->getNormalizedUserInput();
+            $inputWrapper->setUserInput($before);
+            $query = $inputWrapper->getQuery();
+            $normalized = $query->getNormalizedQueryText();
+
             $this->assertEquals($normalized, $after);
         }
     }

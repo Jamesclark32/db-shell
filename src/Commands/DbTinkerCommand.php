@@ -4,6 +4,7 @@ namespace JamesClark32\DbTinker\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use JamesClark32\DbTinker\DbWrapper;
 use JamesClark32\DbTinker\History;
 use JamesClark32\DbTinker\InputWrapper;
 use JamesClark32\DbTinker\OutputWrapper;

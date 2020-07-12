@@ -1,10 +1,9 @@
 <?php
 
-namespace JamesClark32\DbTinker\Commands;
+namespace JamesClark32\DbTinker;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use JamesClark32\DbTinker\Query;
 
 class DbWrapper
 {
