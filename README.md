@@ -5,9 +5,11 @@ DbTinker adds an artisan command which emulates the mysql command line client.
 This allows you to interact with the database directly via straight sql.
 
 
-## Why
+## Why?
 
-Refer to the [why documentation](why.md) if you are interested in the motivation for this package.
+The short version is: to avoid installing software on the host machine which is otherwise not needed.
+
+Refer to the [why documentation](why.md) if you are interested in more details about the motivation for this package.
 
 ## Installation
 Installing db-tinker is a straightforward matter. To add db-tinker to your project as a dev dependency, simply run:
@@ -76,8 +78,6 @@ If you're using this package, I'd love to hear your thoughts about it!
  
 ## TODO: 
 
-auto width-based \g \G switching  @ src/Output/SelectStatement.php:44
-
 add tests
 
 prevent `control + C` exit (and update usage doc to reflect this)
@@ -91,3 +91,5 @@ configurable prompt
 configurable table stype (via symfony console table options)
 
 improve documentation. flesh out information and add some pictures.
+
+required refactoring in src/Output/SelectStatement.php:45

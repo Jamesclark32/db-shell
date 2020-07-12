@@ -73,4 +73,14 @@ return [
      */
     'confirm_large_result_set_display' => true,
     'confirm_large_result_set_limit' => 250,
+
+    /*
+     * db-tinker can automatically switch between table mode and vertical mode when displaying multiple rows
+     * to do this, it pre-processes all retrieved data and establishes the width of the table to be drawn
+     * and compares this with the current width of the terminal in which db-tinker is actively running
+     * setting this automatically_switch_to_table_display to false will prevent this from happening
+     * this behavior can be helpful, but does does have a performance impact on larger data sets
+     * The automatic switching behavior can be overridden using a traditional /g or /G syntax
+     */
+    'automatically_switch_to_table_display' => true,
 ];
