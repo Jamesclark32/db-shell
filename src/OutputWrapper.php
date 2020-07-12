@@ -65,6 +65,10 @@ class OutputWrapper
 
         $outputAttribute = $this->getOutputAttribute($this->query->getQueryType());
 
+        if (!$this->fetchConfirmDisplay(count($this->results))) {
+            return;
+        }
+
         $this->$outputAttribute
             ->setLineDecorator($this->lineDecorator)
             ->setOutputStyle($this->outputStyle)
@@ -138,12 +142,22 @@ class OutputWrapper
 
     protected function fetchConfirmDisplay(int $count): bool
     {
-        if ($count > 100) {
+        if ($this->shouldVerifyOutputLargeResultSets() && $this->exceedsLargeResultSetThreshold($count)) {
             return $this->outputStyle->confirm(trans('db-tinker::output.confirm_display', [
                 'count' => number_format($count),
             ]));
         }
 
         return true;
+    }
+
+    protected function shouldVerifyOutputLargeResultSets(): bool
+    {
+        return config('db-tinker.confirm_large_result_set_display');
+    }
+
+    protected function exceedsLargeResultSetThreshold(int $count): bool
+    {
+        return $count > config('db-tinker.confirm_large_result_set_limit');
     }
 }
