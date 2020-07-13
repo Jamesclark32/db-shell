@@ -84,8 +84,6 @@ configurable prompt
 
 configurable table style (via symfony console table options)
 
-required refactoring in src/Output/SelectStatement.php:45
-
 add tests
 
 formatable and smarter user input
