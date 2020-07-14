@@ -6,11 +6,12 @@ return [
      */
     'colors' => [
         'responses' => [
-            'delete' => 'green',
+            'count' => 'green',
+//            'delete' => 'green',
             'error' => 'green',
             'exit' => 'green',
             'footer' => 'green',
-            'insert' => 'green',
+//            'insert' => 'green',
             'reconnecting' => 'green',
             'update' => 'green',
             'use' => 'green',

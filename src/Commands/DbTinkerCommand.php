@@ -65,7 +65,7 @@ class DbTinkerCommand extends Command
 
         if ($this->query->getNormalizedQueryText()) {
 
-            if ($this->query->getNormalizedQueryText()==='exit'){
+            if ($this->query->getNormalizedQueryText() === 'exit') {
 
                 $this->outputWrapper->outputExit();
 
@@ -87,15 +87,15 @@ class DbTinkerCommand extends Command
     protected function processQuery(): void
     {
         $results = $this->dbWrapper->setQuery($this->query)->execute();
+        if (!$results) {
+            $results = [];
+        }
 
         $this->outputWrapper
             ->setOutput($this->output)
             ->setProcessingTime($this->dbWrapper->getProcessingTime())
-            ->setQuery($this->query);
-
-        if ($results !== null) {
-            $this->outputWrapper->setResults($results);
-        }
+            ->setQuery($this->query)
+            ->setResults($results);
 
         $this->outputWrapper->render();
     }

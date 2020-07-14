@@ -4,9 +4,8 @@ namespace JamesClark32\DbTinker;
 
 use Illuminate\Console\OutputStyle;
 use Illuminate\Support\Arr;
-use JamesClark32\DbTinker\Output\DeleteStatement;
+use JamesClark32\DbTinker\Output\Count;
 use JamesClark32\DbTinker\Output\ExitDbTinker;
-use JamesClark32\DbTinker\Output\InsertStatement;
 use JamesClark32\DbTinker\Output\SelectStatement;
 use JamesClark32\DbTinker\Output\SqlError;
 use JamesClark32\DbTinker\Output\UpdateStatement;
@@ -15,10 +14,9 @@ use JamesClark32\DbTinker\Output\UseStatement;
 class OutputWrapper
 {
     protected ?array $results = [];
-    protected DeleteStatement $deleteStatement;
+    protected Count $count;
     protected ExitDbTinker $exitDbTinker;
     protected float $processingTime;
-    protected InsertStatement $insertStatement;
     protected LineDecorator $lineDecorator;
     protected OutputStyle $outputStyle;
     protected Query $query;
@@ -28,9 +26,8 @@ class OutputWrapper
     protected UseStatement $useStatement;
 
     public function __construct(
-        DeleteStatement $deleteStatement,
+        Count $count,
         ExitDbTinker $exitDbTinker,
-        InsertStatement $insertStatement,
         LineDecorator $lineDecorator,
         SelectStatement $selectStatement,
         UpdateStatement $updateStatement,
@@ -38,10 +35,8 @@ class OutputWrapper
         SqlError $sqlError
     ) {
         $this->lineDecorator = $lineDecorator;
-
+        $this->count = $count;
         $this->useStatement = $useStatement;
-        $this->insertStatement = $insertStatement;
-        $this->deleteStatement = $deleteStatement;
         $this->exitDbTinker = $exitDbTinker;
         $this->updateStatement = $updateStatement;
         $this->selectStatement = $selectStatement;
@@ -94,13 +89,14 @@ class OutputWrapper
     protected function getOutputAttributeMappings(): array
     {
         return [
-            'use' => 'useStatement',
-            'insert' => 'insertStatement',
-            'delete' => 'deleteStatement',
-            'update' => 'updateStatement',
+            'create' => 'count',
+            'delete' => 'count',
+            'drop' => 'count',
+            'insert' => 'count',
             'select' => 'selectStatement',
             'show' => 'selectStatement',
-            'create' => 'insertStatement',
+            'update' => 'updateStatement',
+            'use' => 'useStatement',
         ];
     }
 

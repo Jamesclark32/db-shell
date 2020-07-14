@@ -78,8 +78,10 @@ If you're using this package, I'd love to hear your thoughts about it!
  
 ## TODO: 
 
-heavy refactor and eliminate duplication in output
-    is it as simple as count vs result set?
+sometimes input sends previous query? 
+    after 'unknown database' error?
+
+output footer for update, audit others and disable as appropriate
 
 formatable and smarter user input
 
@@ -94,3 +96,5 @@ configurable table style (via symfony console table options)
 add tests
 
 improve documentation. flesh out information and add some pictures.
+
+rename to db:shell

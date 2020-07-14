@@ -38,6 +38,7 @@ class DbWrapper
 
     protected function executeQuery()
     {
+        $this->results = [];
         $executeMethodName = $this->getExecuteQueryMethod($this->query->getQueryType());
 
         try {
@@ -57,7 +58,6 @@ class DbWrapper
     {
         $count = DB::affectingStatement($this->query->getNormalizedQueryText());
 
-        dump($count);
         return [
             'count' => $count,
         ];
