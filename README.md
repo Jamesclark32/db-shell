@@ -78,11 +78,6 @@ If you're using this package, I'd love to hear your thoughts about it!
  
 ## TODO: 
 
-sometimes input sends previous query? 
-    after 'unknown database' error?
-
-output footer for update, audit others and disable as appropriate
-
 formatable and smarter user input
 
 prevent `control + C` exit (and update usage doc to reflect this)
@@ -91,10 +86,8 @@ configurable prompt
 
 bold abstraction
 
-configurable table style (via symfony console table options)
-
 add tests
 
 improve documentation. flesh out information and add some pictures.
 
-rename to db:shell
+rename to laravel-db-shell / db:shell

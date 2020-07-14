@@ -17,5 +17,6 @@ class Count extends BaseStatement implements StatementInterface
         $decoratedOutputText = $this->lineDecorator->getDecoratedLine($outputText, $outputTextColor);
 
         $this->outputStyle->writeln($decoratedOutputText);
+        $this->outputStyle->newLine();
     }
 }
