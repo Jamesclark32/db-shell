@@ -53,6 +53,16 @@ class DbWrapper
         return DB::connection()->getPdo()->query($this->query->getNormalizedQueryText())->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    protected function executeCreateQuery(): ?array
+    {
+        $count = DB::affectingStatement($this->query->getNormalizedQueryText());
+
+        dump($count);
+        return [
+            'count' => $count,
+        ];
+    }
+
     protected function executeUseQuery(): void
     {
         DB::connection()->getPdo()->exec($this->query->getNormalizedQueryText());
@@ -109,10 +119,13 @@ class DbWrapper
     protected function getExecuteQueryMethodMappings(): array
     {
         return [
-            'use' => 'executeUseQuery',
-            'insert' => 'executeInsertQuery',
+            'create' => 'executeCreateQuery',
             'delete' => 'executeDeleteQuery',
+            'insert' => 'executeInsertQuery',
+            'select' => 'executeSelectQuery',
+            'show' => 'executeSelectQuery',
             'update' => 'executeUpdateQuery',
+            'use' => 'executeUseQuery',
         ];
     }
 }

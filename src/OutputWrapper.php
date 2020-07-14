@@ -99,6 +99,8 @@ class OutputWrapper
             'delete' => 'deleteStatement',
             'update' => 'updateStatement',
             'select' => 'selectStatement',
+            'show' => 'selectStatement',
+            'create' => 'insertStatement',
         ];
     }
 

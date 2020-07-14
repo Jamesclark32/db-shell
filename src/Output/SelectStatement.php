@@ -66,7 +66,8 @@ class SelectStatement extends BaseStatement implements StatementInterface
 
     protected function getTableWidth(): int
     {
-        $columns = array_keys(Arr::get($this->results, 0));
+        $columns = $this->getColumns();
+
 
         $maxLengths = [];
         foreach ($columns as $column) {
@@ -83,5 +84,14 @@ class SelectStatement extends BaseStatement implements StatementInterface
         }
 
         return array_sum($maxLengths) + (count($maxLengths) * 3) + 1;
+    }
+
+    protected function getColumns(): array
+    {
+        $firstRow = Arr::get($this->results, 0);
+        if (is_array($firstRow)) {
+            return array_keys($firstRow);
+        }
+        return [];
     }
 }
