@@ -78,8 +78,6 @@ If you're using this package, I'd love to hear your thoughts about it!
  
 ## TODO: 
 
-bold abstraction
-
 add tests
 
 improve documentation. flesh out information and add some pictures. 'value added' section

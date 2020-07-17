@@ -3,28 +3,27 @@
 return [
     /*
      *  Acceptable colors are: black, red, green, yellow, blue, magenta, cyan, white, and default
+     *  Any color can be prepended with the word 'bold'. For example, boldgreen or boldyellow.
      */
     'colors' => [
         'responses' => [
             'count' => 'green',
-//            'delete' => 'green',
             'error' => 'green',
             'exit' => 'green',
             'footer' => 'green',
-//            'insert' => 'green',
             'reconnecting' => 'green',
             'update' => 'green',
             'use' => 'green',
         ],
         'table' => [
-            'border' => 'green',
+            'border' => 'boldgreen',
             'column_data' => 'green',
-            'column_head' => 'yellow',
+            'column_head' => 'boldyellow',
         ],
         'vertical' => [
             'column_data' => 'green',
-            'column_head' => 'yellow',
-            'delimiter_row' => 'green',
+            'column_head' => 'boldyellow',
+            'delimiter_row' => 'boldgreen',
         ],
     ],
 

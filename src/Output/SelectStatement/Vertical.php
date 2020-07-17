@@ -71,7 +71,7 @@ class Vertical extends BaseStatement implements StatementInterface
         $displayText = $padding . $rowNumberText . $padding;
 
         $outputTextColor = config('db-tinker.colors.vertical.delimiter_row', 'white');
-        return $this->lineDecorator->getBoldDecoratedLine($displayText, $outputTextColor);
+        return $this->lineDecorator->getDecoratedLine($displayText, $outputTextColor);
     }
 
     protected function getAttributeLine($key, $value): string
@@ -83,7 +83,7 @@ class Vertical extends BaseStatement implements StatementInterface
     {
         $displayText = str_pad($string, $this->getLongestKey(), ' ', STR_PAD_LEFT) . ': ';
         $outputTextColor = config('db-tinker.colors.vertical.column_head', 'white');
-        return $this->lineDecorator->getBoldDecoratedLine($displayText, $outputTextColor);
+        return $this->lineDecorator->getDecoratedLine($displayText, $outputTextColor);
     }
 
     protected function getAttributeValue($string): string

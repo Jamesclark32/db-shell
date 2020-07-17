@@ -48,7 +48,7 @@ class Table extends BaseStatement implements StatementInterface
     protected function getStyles(TableStyle $tableStyle): TableStyle
     {
         return $tableStyle
-            ->setBorderFormat($this->lineDecorator->getBoldDecoratedLine('%s', config('db-tinker.colors.table.border', 'white')))
+            ->setBorderFormat($this->lineDecorator->getDecoratedLine('%s', config('db-tinker.colors.table.border', 'white')))
             ->setCellHeaderFormat($this->lineDecorator->getDecoratedLine('%s', config('db-tinker.colors.table.column_head', 'white')))
             ->setCellRowFormat($this->lineDecorator->getDecoratedLine('%s', config('db-tinker.colors.table.column_data', 'white')));
     }
