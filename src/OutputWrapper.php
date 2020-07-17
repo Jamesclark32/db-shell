@@ -75,10 +75,6 @@ class OutputWrapper
             ->setQuery($this->query)
             ->setResults($this->results)
             ->render();
-
-        if (!$this->query->hadError()) {
-            $this->outputFooter(count($this->results), $this->processingTime);
-        }
     }
 
     protected function getOutputAttribute(string $queryType): string
@@ -139,20 +135,6 @@ class OutputWrapper
         return $this;
     }
 
-    protected function outputFooter(int $count, float $processingTime): void
-    {
-        if ($this->shouldShowFooter()) {
-            $outputText = trans_choice('db-tinker::output.footer', $count, [
-                'count' => number_format($count),
-                'seconds' => round($processingTime, 2),
-            ]);
-
-            $outputTextColor = $outputTextColor = config('db-tinker.colors.responses.footer', 'white');
-            $this->outputStyle->writeln($this->lineDecorator->getDecoratedLine($outputText, $outputTextColor));
-            $this->outputStyle->newLine();
-        }
-    }
-
     protected function fetchConfirmDisplay(int $count): bool
     {
         if ($this->shouldVerifyOutputLargeResultSets() && $this->exceedsLargeResultSetThreshold($count)) {
@@ -172,24 +154,5 @@ class OutputWrapper
     protected function exceedsLargeResultSetThreshold(int $count): bool
     {
         return $count > config('db-tinker.confirm_large_result_set_limit');
-    }
-
-    protected function shouldShowFooter(): bool
-    {
-        return in_array($this->query->getQueryType(), $this->getShowFooterQueryTypes());
-    }
-
-    protected function getShowFooterQueryTypes(): array
-    {
-        return [
-//            'create',
-//            'delete',
-//            'drop',
-//            'insert',
-            'select',
-//            'show',
-//            'update',
-//            'use',
-        ];
     }
 }

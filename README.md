@@ -78,14 +78,10 @@ If you're using this package, I'd love to hear your thoughts about it!
  
 ## TODO: 
 
-configurable prompt
-
 bold abstraction
 
 add tests
 
-improve documentation. flesh out information and add some pictures.
+improve documentation. flesh out information and add some pictures. 'value added' section
 
 rename to laravel-db-shell / db:shell
-
-is footer row only on select and show? perhaps move to that class.

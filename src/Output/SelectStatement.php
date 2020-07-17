@@ -12,9 +12,11 @@ class SelectStatement extends BaseStatement implements StatementInterface
     {
         if ($this->getIsShowTable()) {
             $this->renderTable();
+            $this->renderFooterIfShould();
             return;
         }
         $this->renderVertical();
+        $this->renderFooterIfShould();
     }
 
     protected function renderTable(): void
@@ -62,6 +64,25 @@ class SelectStatement extends BaseStatement implements StatementInterface
             }
         }
         return true;
+    }
+
+    protected function renderFooterIfShould(): void
+    {
+        if (!$this->query->hadError()) {
+            $this->outputFooter(count($this->results), $this->processingTime);
+        }
+    }
+
+    protected function outputFooter(int $count, float $processingTime): void
+    {
+        $outputText = trans_choice('db-tinker::output.footer', $count, [
+            'count' => number_format($count),
+            'seconds' => round($processingTime, 2),
+        ]);
+
+        $outputTextColor = $outputTextColor = config('db-tinker.colors.responses.footer', 'white');
+        $this->outputStyle->writeln($this->lineDecorator->getDecoratedLine($outputText, $outputTextColor));
+        $this->outputStyle->newLine();
     }
 
     protected function getTableWidth(): int
