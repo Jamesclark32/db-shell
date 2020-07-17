@@ -45,13 +45,6 @@ class InputWrapper
 
     protected function fetchUserInput(): string
     {
-//        $data = readline($this->buildInputPrompt());
-//        $array = str_split($data);
-//        foreach($array as $bit) {
-//            echo "\r ".$bit;
-//            sleep(2);
-//        }
-
         return readline($this->buildInputPrompt());
     }
 

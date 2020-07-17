@@ -78,10 +78,6 @@ If you're using this package, I'd love to hear your thoughts about it!
  
 ## TODO: 
 
-formatable and smarter user input
-
-prevent `control + C` exit (and update usage doc to reflect this)
-
 configurable prompt
 
 bold abstraction
@@ -91,3 +87,5 @@ add tests
 improve documentation. flesh out information and add some pictures.
 
 rename to laravel-db-shell / db:shell
+
+is footer row only on select and show? perhaps move to that class.

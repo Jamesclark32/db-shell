@@ -3,7 +3,6 @@
 namespace JamesClark32\DbTinker\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use JamesClark32\DbTinker\DbWrapper;
 use JamesClark32\DbTinker\History;
@@ -21,6 +20,7 @@ class DbTinkerCommand extends Command
     protected Query $query;
     protected History $history;
     protected string $connection;
+    protected int $signalCount = 0;
 
     public function __construct(
         DbWrapper $dbWrapper,
@@ -41,6 +41,7 @@ class DbTinkerCommand extends Command
         $this->initializeDbTinkerCommand();
 
         $this->output->writeln(trans('db-tinker::output.startup'));
+        $this->output->writeln(trans('db-tinker::output.startup_exit'));
         $this->output->newLine();
 
         while (true) {
@@ -51,10 +52,27 @@ class DbTinkerCommand extends Command
     protected function initializeDbTinkerCommand(): void
     {
         ini_set('memory_limit', '1G');
+
+        pcntl_async_signals(true);
+
+        pcntl_signal(SIGTERM, [$this, 'handelSignal']);
+        pcntl_signal(SIGINT, [$this, 'handelSignal']);
+
         $this->connection = DB::getDefaultConnection();
         $this->outputWrapper->setOutput($this->output);
         $this->history->loadHistory();
         $this->inputWrapper->setHistory($this->history);
+    }
+
+    //@TODO: migrate this to input project
+    public function handelSignal(int $signalNumber, $signalInformation)
+    {
+        $this->signalCount += 1;
+
+        if ($this->signalCount > 10) {
+            $this->output->writeln(trans('db-tinker::output.startup_exit'));
+            $this->signalCount = 0;
+        }
     }
 
     protected function handleIteration(): void

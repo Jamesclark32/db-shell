@@ -11,6 +11,7 @@ return [
     'no_error_message' => 'hiss',
     'reconnecting' => 'hiss...',
     'startup' => 'purr',
+    'startup_exit' => 'Meow "exit".',
     'update_response' => 'purr',
     'update_response_summary' => 'purr',
     'vertical' => [
