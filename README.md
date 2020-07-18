@@ -1,8 +1,12 @@
-## About
 
-DbTinker adds an artisan command which emulates the mysql command line client.
+## What is this? 
+
+DbTinker adds an artisan command which mimics the mysql command line client.
 
 This allows you to interact with the database directly via straight sql.
+
+
+![A typical db tinker session](readme/db-tinker.png)
 
 
 ## Why?
