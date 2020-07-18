@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
   <testsuite name="" tests="2" assertions="1" errors="1" warnings="0" failures="0" skipped="0" time="0.009238">
-    <testsuite name="DB-Tinker Test Suite" tests="2" assertions="1" errors="1" warnings="0" failures="0" skipped="0" time="0.009238">
-      <testsuite name="JamesClark32\DbTinker\Tests\DbTinkerFactoryTest" file="/Users/jamesclark/work/code/db-tinker/tests/DbTinkerFactoryTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.007178">
-        <testcase name="test_it_returns_a_bool" class="JamesClark32\DbTinker\Tests\DbTinkerFactoryTest" classname="JamesClark32.DbTinker.Tests.DbTinkerFactoryTest" file="/Users/jamesclark/work/code/db-tinker/tests/DbTinkerFactoryTest.php" line="9" assertions="1" time="0.007178"/>
+    <testsuite name="DB-Shell Test Suite" tests="2" assertions="1" errors="1" warnings="0" failures="0" skipped="0" time="0.009238">
+      <testsuite name="JamesClark32\LaravelDbShell\Tests\LaravelDbShellFactoryTest" file="/Users/jamesclark/work/code/db-shell/tests/LaravelDbShellFactoryTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.007178">
+        <testcase name="test_it_returns_a_bool" class="JamesClark32\LaravelDbShell\Tests\LaravelDbShellFactoryTest" classname="JamesClark32.LaravelDbShell.Tests.LaravelDbShellFactoryTest" file="/Users/jamesclark/work/code/db-shell/tests/LaravelDbShellFactoryTest.php" line="9" assertions="1" time="0.007178"/>
       </testsuite>
-      <testsuite name="JamesClark32\DbTinker\Tests\InputWrapperTest" file="/Users/jamesclark/work/code/db-tinker/tests/InputWrapperTest.php" tests="1" assertions="0" errors="1" warnings="0" failures="0" skipped="0" time="0.002060">
-        <testcase name="test_it_normalized_user_input" class="JamesClark32\DbTinker\Tests\InputWrapperTest" classname="JamesClark32.DbTinker.Tests.InputWrapperTest" file="/Users/jamesclark/work/code/db-tinker/tests/InputWrapperTest.php" line="10" assertions="0" time="0.002060">
-          <error type="Error">JamesClark32\DbTinker\Tests\InputWrapperTest::test_it_normalized_user_input
-Error: Typed property JamesClark32\DbTinker\InputWrapper::$normalizedUserInput must not be accessed before initialization
+      <testsuite name="JamesClark32\LaravelDbShell\Tests\InputWrapperTest" file="/Users/jamesclark/work/code/db-shell/tests/InputWrapperTest.php" tests="1" assertions="0" errors="1" warnings="0" failures="0" skipped="0" time="0.002060">
+        <testcase name="test_it_normalized_user_input" class="JamesClark32\LaravelDbShell\Tests\InputWrapperTest" classname="JamesClark32.LaravelDbShell.Tests.InputWrapperTest" file="/Users/jamesclark/work/code/db-shell/tests/InputWrapperTest.php" line="10" assertions="0" time="0.002060">
+          <error type="Error">JamesClark32\LaravelDbShell\Tests\InputWrapperTest::test_it_normalized_user_input
+Error: Typed property JamesClark32\LaravelDbShell\InputWrapper::$normalizedUserInput must not be accessed before initialization
 
-/Users/jamesclark/work/code/db-tinker/src/InputWrapper.php:29
-/Users/jamesclark/work/code/db-tinker/tests/InputWrapperTest.php:15
+/Users/jamesclark/work/code/db-shell/src/InputWrapper.php:29
+/Users/jamesclark/work/code/db-shell/tests/InputWrapperTest.php:15
 </error>
         </testcase>
       </testsuite>

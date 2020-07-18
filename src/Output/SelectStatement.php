@@ -1,10 +1,10 @@
 <?php
 
-namespace JamesClark32\DbTinker\Output;
+namespace JamesClark32\LaravelDbShell\Output;
 
 use Illuminate\Support\Arr;
-use JamesClark32\DbTinker\Output\SelectStatement\Table;
-use JamesClark32\DbTinker\Output\SelectStatement\Vertical;
+use JamesClark32\LaravelDbShell\Output\SelectStatement\Table;
+use JamesClark32\LaravelDbShell\Output\SelectStatement\Vertical;
 
 class SelectStatement extends BaseStatement implements StatementInterface
 {
@@ -53,7 +53,7 @@ class SelectStatement extends BaseStatement implements StatementInterface
             return false;
         }
 
-        if (config('db-tinker.automatically_switch_to_table_display', false) === true) {
+        if (config('db-shell.automatically_switch_to_table_display', false) === true) {
 
             $tableWidth = $this->getTableWidth();
 
@@ -75,12 +75,12 @@ class SelectStatement extends BaseStatement implements StatementInterface
 
     protected function outputFooter(int $count, float $processingTime): void
     {
-        $outputText = trans_choice('db-tinker::output.footer', $count, [
+        $outputText = trans_choice('db-shell::output.footer', $count, [
             'count' => number_format($count),
             'seconds' => round($processingTime, 2),
         ]);
 
-        $outputTextColor = $outputTextColor = config('db-tinker.colors.responses.footer', 'white');
+        $outputTextColor = $outputTextColor = config('db-shell.colors.responses.footer', 'white');
         $this->outputStyle->writeln($this->lineDecorator->getDecoratedLine($outputText, $outputTextColor));
         $this->outputStyle->newLine();
     }

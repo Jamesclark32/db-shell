@@ -1,6 +1,6 @@
 <?php
 
-namespace JamesClark32\DbTinker;
+namespace JamesClark32\LaravelDbShell;
 
 class InputWrapper
 {
@@ -59,7 +59,7 @@ class InputWrapper
 
     protected function buildInputPrompt(): string
     {
-        return trans('db-tinker::input_prompts.input_query', [
+        return trans('db-shell::input_prompts.input_query', [
             'connection' => $this->connectionName,
         ]);
     }

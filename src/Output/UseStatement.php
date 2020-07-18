@@ -1,15 +1,15 @@
 <?php
 
 
-namespace JamesClark32\DbTinker\Output;
+namespace JamesClark32\LaravelDbShell\Output;
 
 class UseStatement extends BaseStatement implements StatementInterface
 {
     public function render(): void
     {
-        $outputText = trans('db-tinker::output.database_changed');
+        $outputText = trans('db-shell::output.database_changed');
 
-        $outputTextColor = config('db-tinker.colors.responses.use', 'white');
+        $outputTextColor = config('db-shell.colors.responses.use', 'white');
         $decoratedOutputText = $this->lineDecorator->getDecoratedLine($outputText, $outputTextColor);
 
         $this->outputStyle->writeln($decoratedOutputText);

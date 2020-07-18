@@ -1,21 +1,21 @@
 <?php
 
-namespace JamesClark32\DbTinker;
+namespace JamesClark32\LaravelDbShell;
 
 use Illuminate\Console\OutputStyle;
 use Illuminate\Support\Arr;
-use JamesClark32\DbTinker\Output\Count;
-use JamesClark32\DbTinker\Output\ExitDbTinker;
-use JamesClark32\DbTinker\Output\SelectStatement;
-use JamesClark32\DbTinker\Output\SqlError;
-use JamesClark32\DbTinker\Output\UpdateStatement;
-use JamesClark32\DbTinker\Output\UseStatement;
+use JamesClark32\LaravelDbShell\Output\Count;
+use JamesClark32\LaravelDbShell\Output\ExitLaravelDbShell;
+use JamesClark32\LaravelDbShell\Output\SelectStatement;
+use JamesClark32\LaravelDbShell\Output\SqlError;
+use JamesClark32\LaravelDbShell\Output\UpdateStatement;
+use JamesClark32\LaravelDbShell\Output\UseStatement;
 
 class OutputWrapper
 {
     protected ?array $results = [];
     protected Count $count;
-    protected ExitDbTinker $exitDbTinker;
+    protected ExitLaravelDbShell $exitLaravelDbShell;
     protected float $processingTime;
     protected LineDecorator $lineDecorator;
     protected OutputStyle $outputStyle;
@@ -27,7 +27,7 @@ class OutputWrapper
 
     public function __construct(
         Count $count,
-        ExitDbTinker $exitDbTinker,
+        ExitLaravelDbShell $exitLaravelDbShell,
         LineDecorator $lineDecorator,
         SelectStatement $selectStatement,
         UpdateStatement $updateStatement,
@@ -37,7 +37,7 @@ class OutputWrapper
         $this->lineDecorator = $lineDecorator;
         $this->count = $count;
         $this->useStatement = $useStatement;
-        $this->exitDbTinker = $exitDbTinker;
+        $this->exitLaravelDbShell = $exitLaravelDbShell;
         $this->updateStatement = $updateStatement;
         $this->selectStatement = $selectStatement;
         $this->sqlError = $sqlError;
@@ -113,7 +113,7 @@ class OutputWrapper
 
     public function outputExit(): void
     {
-        $this->exitDbTinker
+        $this->exitLaravelDbShell
             ->setLineDecorator($this->lineDecorator)
             ->setOutputStyle($this->outputStyle)
             ->setResults($this->results)
@@ -122,9 +122,9 @@ class OutputWrapper
 
     public function outputReconnecting(): void
     {
-        $outputText = trans('db-tinker::output.reconnecting');
+        $outputText = trans('db-shell::output.reconnecting');
 
-        $outputTextColor = $outputTextColor = config('db-tinker.colors.responses.reconnecting', 'white');
+        $outputTextColor = $outputTextColor = config('db-shell.colors.responses.reconnecting', 'white');
         $this->outputStyle->writeln($this->lineDecorator->getDecoratedLine($outputText, $outputTextColor));
         $this->outputStyle->newLine();
     }
@@ -138,7 +138,7 @@ class OutputWrapper
     protected function fetchConfirmDisplay(int $count): bool
     {
         if ($this->shouldVerifyOutputLargeResultSets() && $this->exceedsLargeResultSetThreshold($count)) {
-            return $this->outputStyle->confirm(trans('db-tinker::output.confirm_display', [
+            return $this->outputStyle->confirm(trans('db-shell::output.confirm_display', [
                 'count' => number_format($count),
             ]));
         }
@@ -148,11 +148,11 @@ class OutputWrapper
 
     protected function shouldVerifyOutputLargeResultSets(): bool
     {
-        return config('db-tinker.confirm_large_result_set_display');
+        return config('db-shell.confirm_large_result_set_display');
     }
 
     protected function exceedsLargeResultSetThreshold(int $count): bool
     {
-        return $count > config('db-tinker.confirm_large_result_set_limit');
+        return $count > config('db-shell.confirm_large_result_set_limit');
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace JamesClark32\DbTinker\Tests;
+namespace JamesClark32\LaravelDbShell\Tests;
 
-use JamesClark32\DbTinker\InputWrapper;
+use JamesClark32\LaravelDbShell\InputWrapper;
 use PHPUnit\Framework\TestCase;
 
 class InputWrapperTest extends TestCase

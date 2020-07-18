@@ -1,14 +1,14 @@
 <?php
 
-namespace JamesClark32\DbTinker\Providers;
+namespace JamesClark32\LaravelDbShell\Providers;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
-use JamesClark32\DbTinker\Commands\DbTinkerCommand;
+use JamesClark32\LaravelDbShell\Commands\LaravelDbShellCommand;
 
-class DbTinkerServiceProvider extends ServiceProvider
+class LaravelDbShellServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
@@ -16,16 +16,16 @@ class DbTinkerServiceProvider extends ServiceProvider
 
         $this->overwriteDatabaseConfig();
 
-        $this->loadTranslationsFrom(__DIR__ . '/../lang/', 'db-tinker');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang/', 'db-shell');
 
         $this->publishes([
-            __DIR__ . '/../config/db-tinker.php' => config_path('db-tinker.php'),
-            __DIR__ . '/../lang/' => resource_path('lang/vendor/db-tinker'),
+            __DIR__ . '/../config/db-shell.php' => config_path('db-shell.php'),
+            __DIR__ . '/../lang/' => resource_path('lang/vendor/db-shell'),
         ]);
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                DbTinkerCommand::class,
+                LaravelDbShellCommand::class,
             ]);
         }
     }
@@ -37,7 +37,7 @@ class DbTinkerServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/db-tinker.php', 'db-tinker');
+        $this->mergeConfigFrom(__DIR__ . '/../config/db-shell.php', 'db-shell');
     }
 
     protected function overwriteDatabaseConfig(): void
@@ -45,7 +45,7 @@ class DbTinkerServiceProvider extends ServiceProvider
         $this->getPasswordIfShould();
 
         foreach ($this->getDatabaseVariableNames() as $databaseVariableName) {
-            $value = config('db-tinker.connection.' . $databaseVariableName, null);
+            $value = config('db-shell.connection.' . $databaseVariableName, null);
             if ($value) {
                 $this->setDatabaseConfig($databaseVariableName, $value);
             }
@@ -56,7 +56,7 @@ class DbTinkerServiceProvider extends ServiceProvider
 
     protected function setLocaleIfShould(): void
     {
-        $configuredLocale = config('db-tinker.locale', null);
+        $configuredLocale = config('db-shell.locale', null);
         $availableLanguagePacks = $this->getAvailableLanguagePacks();
         if (in_array($configuredLocale, $availableLanguagePacks)) {
             App::setLocale($configuredLocale);
@@ -87,12 +87,12 @@ class DbTinkerServiceProvider extends ServiceProvider
 
     protected function getPasswordIfShould(): void
     {
-        if (config('db-tinker.prompt_for_password', false) === true) {
+        if (config('db-shell.prompt_for_password', false) === true) {
 
-            echo trans('db-tinker::input_prompts.password', [
-                'username' => config('db-tinker.connection.username'),
-                'host' => config('db-tinker.connection.host'),
-                'database' => config('db-tinker.connection.database'),
+            echo trans('db-shell::input_prompts.password', [
+                'username' => config('db-shell.connection.username'),
+                'host' => config('db-shell.connection.host'),
+                'database' => config('db-shell.connection.database'),
             ]);
 
             $file = popen("read -s; echo \$REPLY", "r");

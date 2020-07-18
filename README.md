@@ -1,12 +1,12 @@
 
 ## What is this? 
 
-DbTinker adds an artisan command which mimics the mysql command line client.
+LaravelDbShell adds an artisan command which mimics the mysql command line client.
 
 This allows you to interact with the database directly via straight sql.
 
 
-![A typical db tinker session](readme/db-tinker.png)
+![A typical db shell session](readme/db-shell.png)
 
 
 ## Why?
@@ -16,26 +16,26 @@ The short version is: to avoid installing software on the host machine which is 
 Refer to the [why documentation](why.md) if you are interested in more details about the motivation for this package.
 
 ## Installation
-Installing db-tinker is a straightforward matter. To add db-tinker to your project as a dev dependency, simply run:
+Installing db-shell is a straightforward matter. To add db-shell to your project as a dev dependency, simply run:
 
-`composer require-dev Jamesclark32/db-tinker`
+`composer require-dev Jamesclark32/db-shell`
 
-If you would like db-tinker available on your production installation(s) as well: 
+If you would like db-shell available on your production installation(s) as well: 
 
-`composer require Jamesclark32/db-tinker`
+`composer require Jamesclark32/db-shell`
 
 ## Publishing Config
 If you want to fine-tune the configuration, or language file you will need to publish them by running:
 
-`php artisan vendor:publish --provider="Jamesclark32\DbTinker\DbTinkerServiceProvider"`
+`php artisan vendor:publish --provider="Jamesclark32\LaravelDbShell\LaravelDbShellServiceProvider"`
 
 This will copy the files to your project's `config/` and `language/vendor` folders, where you can modify them as you see fit. 
 
 ## Usage
 
-Once installed, you can launch the db-tinker interface via:
+Once installed, you can launch the db-shell interface via:
 
-`php artisan db-tinker`
+`php artisan db-shell`
 
 This will start a long-running process which will allow you to directly input sql queries and see the results.
 
@@ -53,25 +53,25 @@ Currently you can configure:
     confirm display of large result sets
 
 ### Overriding connection variables
-  Out of the box db-tinker will use laravel's default database connection.
+  Out of the box db-shell will use laravel's default database connection.
    
   Overriding these settings is possible via these connection variables.
   
   While it is certainly possible to set them directly in this config, it is intended to alter any or all of them  via these env vars:
             
    
-    DB-TINKER_HOST
-    DB-TINKER_PORT
-    DB-TINKER_DATABASE
-    DB-TINKER_USERNAME
-    DB-TINKER_PASSWORD
-    DB-TINKER_SOCKET
+    DB-SHELL_HOST
+    DB-SHELL_PORT
+    DB-SHELL_DATABASE
+    DB-SHELL_USERNAME
+    DB-SHELL_PASSWORD
+    DB-SHELL_SOCKET
  
- db-tinker will continue to use the default connection, however, during startup, the variables will be overwritten with these variables and then connection reinitialized during.
+ db-shell will continue to use the default connection, however, during startup, the variables will be overwritten with these variables and then connection reinitialized during.
  
  
  ### Overriding locale and language
- out of the box, db-tinker will use the global local set in laravel's config/app.php file. If you want to override this specifically for db-tinker for any reason, that can be done in the db-tinker config by setting the locale variable. 
+ out of the box, db-shell will use the global local set in laravel's config/app.php file. If you want to override this specifically for db-shell for any reason, that can be done in the db-shell config by setting the locale variable. 
  Available locales are currently en and cat. If you are able to translate into any other language, I would love to see your contribution! 
  
 

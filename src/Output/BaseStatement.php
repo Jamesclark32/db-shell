@@ -1,10 +1,10 @@
 <?php
 
-namespace JamesClark32\DbTinker\Output;
+namespace JamesClark32\LaravelDbShell\Output;
 
 use Illuminate\Console\OutputStyle;
-use JamesClark32\DbTinker\LineDecorator;
-use JamesClark32\DbTinker\Query;
+use JamesClark32\LaravelDbShell\LineDecorator;
+use JamesClark32\LaravelDbShell\Query;
 
 class BaseStatement
 {

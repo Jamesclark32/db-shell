@@ -1,10 +1,10 @@
 <?php
 
-namespace JamesClark32\DbTinker\Output\SelectStatement;
+namespace JamesClark32\LaravelDbShell\Output\SelectStatement;
 
 use Illuminate\Support\Arr;
-use JamesClark32\DbTinker\Output\BaseStatement;
-use JamesClark32\DbTinker\Output\StatementInterface;
+use JamesClark32\LaravelDbShell\Output\BaseStatement;
+use JamesClark32\LaravelDbShell\Output\StatementInterface;
 
 class Vertical extends BaseStatement implements StatementInterface
 {
@@ -64,13 +64,13 @@ class Vertical extends BaseStatement implements StatementInterface
     {
         $padding = str_repeat('*', 27);
 
-        $rowNumberText = trans('db-tinker::output.vertical.row_number', [
+        $rowNumberText = trans('db-shell::output.vertical.row_number', [
             'rowNumber' => number_format($rowNumber),
         ]);
 
         $displayText = $padding . $rowNumberText . $padding;
 
-        $outputTextColor = config('db-tinker.colors.vertical.delimiter_row', 'white');
+        $outputTextColor = config('db-shell.colors.vertical.delimiter_row', 'white');
         return $this->lineDecorator->getDecoratedLine($displayText, $outputTextColor);
     }
 
@@ -82,13 +82,13 @@ class Vertical extends BaseStatement implements StatementInterface
     protected function getAttributeKey($string): string
     {
         $displayText = str_pad($string, $this->getLongestKey(), ' ', STR_PAD_LEFT) . ': ';
-        $outputTextColor = config('db-tinker.colors.vertical.column_head', 'white');
+        $outputTextColor = config('db-shell.colors.vertical.column_head', 'white');
         return $this->lineDecorator->getDecoratedLine($displayText, $outputTextColor);
     }
 
     protected function getAttributeValue($string): string
     {
-        $outputTextColor = config('db-tinker.colors.vertical.column_data', 'white');
+        $outputTextColor = config('db-shell.colors.vertical.column_data', 'white');
         return $this->lineDecorator->getDecoratedLine($string, $outputTextColor);
     }
 

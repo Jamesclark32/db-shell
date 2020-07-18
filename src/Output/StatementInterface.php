@@ -1,6 +1,6 @@
 <?php
 
-namespace JamesClark32\DbTinker\Output;
+namespace JamesClark32\LaravelDbShell\Output;
 
 interface StatementInterface
 {

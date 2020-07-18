@@ -1,19 +1,19 @@
 <?php
 
-namespace JamesClark32\DbTinker\Commands;
+namespace JamesClark32\LaravelDbShell\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use JamesClark32\DbTinker\DbWrapper;
-use JamesClark32\DbTinker\History;
-use JamesClark32\DbTinker\InputWrapper;
-use JamesClark32\DbTinker\OutputWrapper;
-use JamesClark32\DbTinker\Query;
+use JamesClark32\LaravelDbShell\DbWrapper;
+use JamesClark32\LaravelDbShell\History;
+use JamesClark32\LaravelDbShell\InputWrapper;
+use JamesClark32\LaravelDbShell\OutputWrapper;
+use JamesClark32\LaravelDbShell\Query;
 
-class DbTinkerCommand extends Command
+class LaravelDbShellCommand extends Command
 {
     protected $description = 'Launches the user into an interactive database shell';
-    protected $signature = 'db:tinker';
+    protected $signature = 'db:shell';
     protected DbWrapper $dbWrapper;
     protected InputWrapper $inputWrapper;
     protected OutputWrapper $outputWrapper;
@@ -38,10 +38,10 @@ class DbTinkerCommand extends Command
 
     public function handle(): void
     {
-        $this->initializeDbTinkerCommand();
+        $this->initializeLaravelDbShellCommand();
 
-        $this->output->writeln(trans('db-tinker::output.startup'));
-        $this->output->writeln(trans('db-tinker::output.startup_exit'));
+        $this->output->writeln(trans('db-shell::output.startup'));
+        $this->output->writeln(trans('db-shell::output.startup_exit'));
         $this->output->newLine();
 
         $this->testConnection();
@@ -51,7 +51,7 @@ class DbTinkerCommand extends Command
         }
     }
 
-    protected function initializeDbTinkerCommand(): void
+    protected function initializeLaravelDbShellCommand(): void
     {
         ini_set('memory_limit', '1G');
 
@@ -72,7 +72,7 @@ class DbTinkerCommand extends Command
         $this->signalCount += 1;
 
         if ($this->signalCount > 10) {
-            $this->output->writeln(trans('db-tinker::output.startup_exit'));
+            $this->output->writeln(trans('db-shell::output.startup_exit'));
             $this->signalCount = 0;
         }
     }
@@ -141,7 +141,7 @@ class DbTinkerCommand extends Command
                 ],
             ])->outputError();
 
-            $this->output->warning(trans('db-tinker::output.connection_error'));
+            $this->output->warning(trans('db-shell::output.connection_error'));
             exit;
         }
     }

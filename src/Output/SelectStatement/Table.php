@@ -1,10 +1,10 @@
 <?php
 
-namespace JamesClark32\DbTinker\Output\SelectStatement;
+namespace JamesClark32\LaravelDbShell\Output\SelectStatement;
 
 use Illuminate\Support\Arr;
-use JamesClark32\DbTinker\Output\BaseStatement;
-use JamesClark32\DbTinker\Output\StatementInterface;
+use JamesClark32\LaravelDbShell\Output\BaseStatement;
+use JamesClark32\LaravelDbShell\Output\StatementInterface;
 use Symfony\Component\Console\Helper\TableStyle;
 
 class Table extends BaseStatement implements StatementInterface
@@ -48,9 +48,9 @@ class Table extends BaseStatement implements StatementInterface
     protected function getStyles(TableStyle $tableStyle): TableStyle
     {
         return $tableStyle
-            ->setBorderFormat($this->lineDecorator->getDecoratedLine('%s', config('db-tinker.colors.table.border', 'white')))
-            ->setCellHeaderFormat($this->lineDecorator->getDecoratedLine('%s', config('db-tinker.colors.table.column_head', 'white')))
-            ->setCellRowFormat($this->lineDecorator->getDecoratedLine('%s', config('db-tinker.colors.table.column_data', 'white')));
+            ->setBorderFormat($this->lineDecorator->getDecoratedLine('%s', config('db-shell.colors.table.border', 'white')))
+            ->setCellHeaderFormat($this->lineDecorator->getDecoratedLine('%s', config('db-shell.colors.table.column_head', 'white')))
+            ->setCellRowFormat($this->lineDecorator->getDecoratedLine('%s', config('db-shell.colors.table.column_data', 'white')));
     }
 
     protected function setHeaders(): void

@@ -1,6 +1,6 @@
 <?php
 
-namespace JamesClark32\DbTinker;
+namespace JamesClark32\LaravelDbShell;
 
 use Illuminate\Support\Arr;
 

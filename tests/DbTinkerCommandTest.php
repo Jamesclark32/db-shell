@@ -1,22 +1,22 @@
 <?php
 
-namespace JamesClark32\DbTinker\Tests;
+namespace JamesClark32\LaravelDbShell\Tests;
 
-use JamesClark32\DbTinker\Commands\DbTinkerCommand;
+use JamesClark32\LaravelDbShell\Commands\LaravelDbShellCommand;
 use PHPUnit\Framework\TestCase;
 
-class DbTinkerCommandTest extends TestCase
+class LaravelDbShellCommandTest extends TestCase
 {
-    public function test_db_tinker_console_command()
+    public function test_db_shell_console_command()
     {
-        $command = app(DbTinkerCommand::class);
+        $command = app(LaravelDbShellCommand::class);
         $this->assertIsObject($command);
     }
 
-    public function test_db_tinker_console_command_has_expected_attributes()
+    public function test_db_shell_console_command_has_expected_attributes()
     {
         foreach ($this->getCommandAttributes() as $commandAttribute) {
-            $this->assertClassHasAttribute($commandAttribute, DbTinkerCommand::class);
+            $this->assertClassHasAttribute($commandAttribute, LaravelDbShellCommand::class);
         }
     }
 

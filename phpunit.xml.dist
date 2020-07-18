@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="DB-Tinker Test Suite">
+        <testsuite name="DB-Shell Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
