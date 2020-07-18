@@ -79,20 +79,25 @@ class DbTinkerCommand extends Command
 
     protected function handleIteration(): void
     {
-        $this->query = $this->inputWrapper->setConnectionName($this->connection)->getUserInput();
+        $queries = $this->inputWrapper->setConnectionName($this->connection)->getUserInput();
 
-        $this->reconnectIfShould();
+        foreach ($queries as $query) {
 
-        if ($this->query->getNormalizedQueryText()) {
+            $this->query = $query;
 
-            if ($this->query->getNormalizedQueryText() === 'exit') {
+            $this->reconnectIfShould();
 
-                $this->outputWrapper->outputExit();
+            if ($this->query->getNormalizedQueryText()) {
 
-                exit;
+                if ($this->query->getNormalizedQueryText() === 'exit') {
+
+                    $this->outputWrapper->outputExit();
+
+                    exit;
+                }
+
+                $this->processQuery();
             }
-
-            $this->processQuery();
         }
     }
 

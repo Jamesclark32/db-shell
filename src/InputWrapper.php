@@ -13,12 +13,21 @@ class InputWrapper
         $this->query = $query;
     }
 
-    public function getUserInput(): Query
+    public function getUserInput(): array
     {
-        $this->query->setQueryText($this->fetchUserInput());
-        $this->history->addQueryToHistoryIfShould($this->query->getQueryText());
+        $userInput = $this->fetchUserInput();
+        $userInputArray = preg_split('/(;|\\\g)/i', $userInput);
 
-        return $this->query;
+        $queries = [];
+        foreach ($userInputArray as $queryText) {
+            $query = new Query();
+            $query->setQueryText($queryText);
+            $queries[] = $query;
+        }
+
+        $this->history->addQueryToHistoryIfShould($userInput);
+
+        return $queries;
     }
 
     public function setUserInput(string $userInput): void
