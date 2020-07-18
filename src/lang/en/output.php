@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'connection_error' => 'Connection error, please check your db configuration in .env, and any overrides in config/db-tinker.',
     'confirm_display' => 'This query returned :count records. Continue with display?',
     'count' => 'Query OK, :count row affected (:seconds sec)',
     'database_changed' => 'Database changed',

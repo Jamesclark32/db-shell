@@ -44,6 +44,8 @@ class DbTinkerCommand extends Command
         $this->output->writeln(trans('db-tinker::output.startup_exit'));
         $this->output->newLine();
 
+        $this->testConnection();
+
         while (true) {
             $this->handleIteration();
         }
@@ -96,9 +98,12 @@ class DbTinkerCommand extends Command
 
     protected function reconnectIfShould(): void
     {
+        $this->testConnection();
+
         if (!DB::connection()->getDatabaseName()) {
             $this->outputWrapper->outputReconnecting();
             DB::reconnect();
+            $this->testConnection();
         }
     }
 
@@ -116,5 +121,23 @@ class DbTinkerCommand extends Command
             ->setResults($results);
 
         $this->outputWrapper->render();
+    }
+
+    protected function testConnection(): void
+    {
+        try {
+            DB::connection()->getPdo();
+        } catch (\Exception $e) {
+            $this->outputWrapper->setResults([
+                'error' => [
+                    'errorCode' => $e->getCode(),
+                    'errorNumber' => $e->getCode(),
+                    'errorMessage' => $e->getMessage(),
+                ],
+            ])->outputError();
+
+            $this->output->warning(trans('db-tinker::output.connection_error'));
+            exit;
+        }
     }
 }

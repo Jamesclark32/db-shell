@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'connection_error' => 'hiss',
     'confirm_display' => 'hiss',
     'database_changed' => 'purr',
     'delete_response' => 'purr',
