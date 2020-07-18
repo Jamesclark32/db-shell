@@ -85,5 +85,3 @@ If you're using this package, I'd love to hear your thoughts about it!
 add tests
 
 improve documentation. flesh out information and add some pictures. 'value added' section
-
-rename to laravel-db-shell / db:shell
