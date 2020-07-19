@@ -1,8 +1,3 @@
-[TODO] badget
-
-## Contents
-[TODO]
-
 ## Introduction
 DbShell adds an artisan command to your Laravel application which mimics the mysql command line client.
 
