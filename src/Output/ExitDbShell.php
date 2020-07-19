@@ -1,8 +1,8 @@
 <?php
 
-namespace JamesClark32\LaravelDbShell\Output;
+namespace JamesClark32\DbShell\Output;
 
-class ExitLaravelDbShell extends BaseStatement implements StatementInterface
+class ExitDbShell extends BaseStatement implements StatementInterface
 {
     public function render(): void
     {

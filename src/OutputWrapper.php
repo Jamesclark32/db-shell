@@ -1,21 +1,21 @@
 <?php
 
-namespace JamesClark32\LaravelDbShell;
+namespace JamesClark32\DbShell;
 
 use Illuminate\Console\OutputStyle;
 use Illuminate\Support\Arr;
-use JamesClark32\LaravelDbShell\Output\Count;
-use JamesClark32\LaravelDbShell\Output\ExitLaravelDbShell;
-use JamesClark32\LaravelDbShell\Output\SelectStatement;
-use JamesClark32\LaravelDbShell\Output\SqlError;
-use JamesClark32\LaravelDbShell\Output\UpdateStatement;
-use JamesClark32\LaravelDbShell\Output\UseStatement;
+use JamesClark32\DbShell\Output\Count;
+use JamesClark32\DbShell\Output\ExitDbShell;
+use JamesClark32\DbShell\Output\SelectStatement;
+use JamesClark32\DbShell\Output\SqlError;
+use JamesClark32\DbShell\Output\UpdateStatement;
+use JamesClark32\DbShell\Output\UseStatement;
 
 class OutputWrapper
 {
     protected ?array $results = [];
     protected Count $count;
-    protected ExitLaravelDbShell $exitLaravelDbShell;
+    protected ExitDbShell $exitDbShell;
     protected float $processingTime;
     protected LineDecorator $lineDecorator;
     protected OutputStyle $outputStyle;
@@ -27,7 +27,7 @@ class OutputWrapper
 
     public function __construct(
         Count $count,
-        ExitLaravelDbShell $exitLaravelDbShell,
+        ExitDbShell $exitDbShell,
         LineDecorator $lineDecorator,
         SelectStatement $selectStatement,
         UpdateStatement $updateStatement,
@@ -37,7 +37,7 @@ class OutputWrapper
         $this->lineDecorator = $lineDecorator;
         $this->count = $count;
         $this->useStatement = $useStatement;
-        $this->exitLaravelDbShell = $exitLaravelDbShell;
+        $this->exitDbShell = $exitDbShell;
         $this->updateStatement = $updateStatement;
         $this->selectStatement = $selectStatement;
         $this->sqlError = $sqlError;
@@ -113,7 +113,7 @@ class OutputWrapper
 
     public function outputExit(): void
     {
-        $this->exitLaravelDbShell
+        $this->exitDbShell
             ->setLineDecorator($this->lineDecorator)
             ->setOutputStyle($this->outputStyle)
             ->setResults($this->results)

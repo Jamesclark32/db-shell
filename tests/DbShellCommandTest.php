@@ -1,22 +1,22 @@
 <?php
 
-namespace JamesClark32\LaravelDbShell\Tests;
+namespace JamesClark32\DbShell\Tests;
 
-use JamesClark32\LaravelDbShell\Commands\LaravelDbShellCommand;
+use JamesClark32\DbShell\Commands\DbShellCommand;
 use PHPUnit\Framework\TestCase;
 
-class LaravelDbShellCommandTest extends TestCase
+class DbShellCommandTest extends TestCase
 {
     public function test_db_shell_console_command()
     {
-        $command = app(LaravelDbShellCommand::class);
+        $command = app(DbShellCommand::class);
         $this->assertIsObject($command);
     }
 
     public function test_db_shell_console_command_has_expected_attributes()
     {
         foreach ($this->getCommandAttributes() as $commandAttribute) {
-            $this->assertClassHasAttribute($commandAttribute, LaravelDbShellCommand::class);
+            $this->assertClassHasAttribute($commandAttribute, DbShellCommand::class);
         }
     }
 

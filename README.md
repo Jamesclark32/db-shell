@@ -1,19 +1,22 @@
 
+## Contents
+[TODO]
+
 ## What is this? 
 
-LaravelDbShell adds an artisan command which mimics the mysql command line client.
+DbShell adds an artisan command which mimics the mysql command line client.
 
 This allows you to interact with the database directly via straight sql.
 
 
-![A typical db shell session](readme/db-shell.png)
+![A typical db shell session](documentation/db-shell.png)
 
 
 ## Why?
 
 The short version is: to avoid installing software on the host machine which is otherwise not needed.
 
-Refer to the [why documentation](why.md) if you are interested in more details about the motivation for this package.
+Refer to the [why documentation](documentation/why.md) if you are interested in more details about the motivation for this package.
 
 ## Installation
 Installing db-shell is a straightforward matter. To add db-shell to your project as a dev dependency, simply run:
@@ -27,7 +30,7 @@ If you would like db-shell available on your production installation(s) as well:
 ## Publishing Config
 If you want to fine-tune the configuration, or language file you will need to publish them by running:
 
-`php artisan vendor:publish --provider="Jamesclark32\LaravelDbShell\LaravelDbShellServiceProvider"`
+`php artisan vendor:publish --provider="Jamesclark32\DbShell\DbShellServiceProvider"`
 
 This will copy the files to your project's `config/` and `language/vendor` folders, where you can modify them as you see fit. 
 
@@ -85,3 +88,7 @@ If you're using this package, I'd love to hear your thoughts about it!
 add tests
 
 improve documentation. flesh out information and add some pictures. 'value added' section
+
+rename from laravel db shell to db shell
+
+non-laravel specific version?

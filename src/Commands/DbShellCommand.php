@@ -1,16 +1,16 @@
 <?php
 
-namespace JamesClark32\LaravelDbShell\Commands;
+namespace JamesClark32\DbShell\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use JamesClark32\LaravelDbShell\DbWrapper;
-use JamesClark32\LaravelDbShell\History;
-use JamesClark32\LaravelDbShell\InputWrapper;
-use JamesClark32\LaravelDbShell\OutputWrapper;
-use JamesClark32\LaravelDbShell\Query;
+use JamesClark32\DbShell\DbWrapper;
+use JamesClark32\DbShell\History;
+use JamesClark32\DbShell\InputWrapper;
+use JamesClark32\DbShell\OutputWrapper;
+use JamesClark32\DbShell\Query;
 
-class LaravelDbShellCommand extends Command
+class DbShellCommand extends Command
 {
     protected $description = 'Launches the user into an interactive database shell';
     protected $signature = 'db:shell';
@@ -38,7 +38,7 @@ class LaravelDbShellCommand extends Command
 
     public function handle(): void
     {
-        $this->initializeLaravelDbShellCommand();
+        $this->initializeDbShellCommand();
 
         $this->output->writeln(trans('db-shell::output.startup'));
         $this->output->writeln(trans('db-shell::output.startup_exit'));
@@ -51,7 +51,7 @@ class LaravelDbShellCommand extends Command
         }
     }
 
-    protected function initializeLaravelDbShellCommand(): void
+    protected function initializeDbShellCommand(): void
     {
         ini_set('memory_limit', '1G');
 

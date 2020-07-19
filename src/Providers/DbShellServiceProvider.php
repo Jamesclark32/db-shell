@@ -1,14 +1,14 @@
 <?php
 
-namespace JamesClark32\LaravelDbShell\Providers;
+namespace JamesClark32\DbShell\Providers;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
-use JamesClark32\LaravelDbShell\Commands\LaravelDbShellCommand;
+use JamesClark32\DbShell\Commands\DbShellCommand;
 
-class LaravelDbShellServiceProvider extends ServiceProvider
+class DbShellServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
@@ -25,7 +25,7 @@ class LaravelDbShellServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                LaravelDbShellCommand::class,
+                DbShellCommand::class,
             ]);
         }
     }

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace JamesClark32\LaravelDbShell\Output;
+namespace JamesClark32\DbShell\Output;
 
 class UseStatement extends BaseStatement implements StatementInterface
 {

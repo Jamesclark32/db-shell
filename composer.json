@@ -1,5 +1,5 @@
 {
-  "name": "jamesclark32/laravel-db-shell",
+  "name": "jamesclark32/db-shell",
   "description": "Adds an artisan command which provides rudimentary sql shell functionality",
   "type": "library",
   "license": "MIT",
@@ -19,18 +19,18 @@
   },
   "autoload": {
     "psr-4": {
-      "JamesClark32\\LaravelDbShell\\": "src/"
+      "JamesClark32\\DbShell\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "JamesClark32\\LaravelDbShell\\Tests\\": "tests/"
+      "JamesClark32\\DbShell\\Tests\\": "tests/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "JamesClark32\\LaravelDbShell\\Providers\\LaravelDbShellServiceProvider"
+        "JamesClark32\\DbShell\\Providers\\DbShellServiceProvider"
       ]
     }
   }

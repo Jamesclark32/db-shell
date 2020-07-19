@@ -1,10 +1,10 @@
 <?php
 
-namespace JamesClark32\LaravelDbShell\Output\SelectStatement;
+namespace JamesClark32\DbShell\Output\SelectStatement;
 
 use Illuminate\Support\Arr;
-use JamesClark32\LaravelDbShell\Output\BaseStatement;
-use JamesClark32\LaravelDbShell\Output\StatementInterface;
+use JamesClark32\DbShell\Output\BaseStatement;
+use JamesClark32\DbShell\Output\StatementInterface;
 
 class Vertical extends BaseStatement implements StatementInterface
 {

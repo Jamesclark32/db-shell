@@ -1,8 +1,8 @@
 <?php
 
-namespace JamesClark32\LaravelDbShell\Tests;
+namespace JamesClark32\DbShell\Tests;
 
-use JamesClark32\LaravelDbShell\InputWrapper;
+use JamesClark32\DbShell\InputWrapper;
 use PHPUnit\Framework\TestCase;
 
 class InputWrapperTest extends TestCase
