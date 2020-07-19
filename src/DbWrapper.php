@@ -23,6 +23,7 @@ class DbWrapper
     public function setQuery(Query $query): self
     {
         $this->query = $query;
+
         return $this;
     }
 
@@ -45,7 +46,8 @@ class DbWrapper
             $this->results = $this->$executeMethodName();
         } catch (\Exception $e) {
             $this->results = $this->processException($e);
-            return null;
+
+            return;
         }
     }
 
@@ -98,7 +100,6 @@ class DbWrapper
     protected function processException(\Exception $e): ?array
     {
         if (property_exists($e, 'errorInfo')) {
-
             $errorInfo = $e->errorInfo;
 
             return [

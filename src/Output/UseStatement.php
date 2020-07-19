@@ -1,6 +1,5 @@
 <?php
 
-
 namespace JamesClark32\DbShell\Output;
 
 class UseStatement extends BaseStatement implements StatementInterface

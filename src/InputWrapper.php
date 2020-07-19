@@ -38,12 +38,14 @@ class InputWrapper
     public function setConnectionName(string $connectionName): self
     {
         $this->connectionName = $connectionName;
+
         return $this;
     }
 
     public function setHistory(History $history): self
     {
         $this->history = $history;
+
         return $this;
     }
 

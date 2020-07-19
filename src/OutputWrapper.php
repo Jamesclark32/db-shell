@@ -46,12 +46,14 @@ class OutputWrapper
     public function setOutput(OutputStyle $outputStyle): self
     {
         $this->outputStyle = $outputStyle;
+
         return $this;
     }
 
     public function setQuery(Query $query): self
     {
         $this->query = $query;
+
         return $this;
     }
 
@@ -59,12 +61,13 @@ class OutputWrapper
     {
         if (Arr::has($this->results, 'error')) {
             $this->outputError();
+
             return;
         }
 
         $outputAttribute = $this->getOutputAttribute($this->query->getQueryType());
 
-        if (!$this->fetchConfirmDisplay(count($this->results))) {
+        if (! $this->fetchConfirmDisplay(count($this->results))) {
             return;
         }
 
@@ -99,6 +102,7 @@ class OutputWrapper
     public function setResults(array $results = []): self
     {
         $this->results = $results;
+
         return $this;
     }
 
@@ -132,6 +136,7 @@ class OutputWrapper
     public function setProcessingTime(float $processingTime): self
     {
         $this->processingTime = $processingTime;
+
         return $this;
     }
 

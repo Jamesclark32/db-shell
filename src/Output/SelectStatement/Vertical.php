@@ -26,6 +26,7 @@ class Vertical extends BaseStatement implements StatementInterface
     protected function getKeys(): array
     {
         $firstRow = Arr::get($this->results, 0);
+
         return array_keys($firstRow);
     }
 
@@ -34,7 +35,6 @@ class Vertical extends BaseStatement implements StatementInterface
         $longestKey = 0;
 
         foreach ($this->keys as $key) {
-
             $length = strlen($key);
 
             if ($length > $longestKey) {
@@ -68,27 +68,30 @@ class Vertical extends BaseStatement implements StatementInterface
             'rowNumber' => number_format($rowNumber),
         ]);
 
-        $displayText = $padding . $rowNumberText . $padding;
+        $displayText = $padding.$rowNumberText.$padding;
 
         $outputTextColor = config('db-shell.colors.vertical.delimiter_row', 'white');
+
         return $this->lineDecorator->getDecoratedLine($displayText, $outputTextColor);
     }
 
     protected function getAttributeLine($key, $value): string
     {
-        return $this->getAttributeKey($key) . $this->getAttributeValue($value);
+        return $this->getAttributeKey($key).$this->getAttributeValue($value);
     }
 
     protected function getAttributeKey($string): string
     {
-        $displayText = str_pad($string, $this->getLongestKey(), ' ', STR_PAD_LEFT) . ': ';
+        $displayText = str_pad($string, $this->getLongestKey(), ' ', STR_PAD_LEFT).': ';
         $outputTextColor = config('db-shell.colors.vertical.column_head', 'white');
+
         return $this->lineDecorator->getDecoratedLine($displayText, $outputTextColor);
     }
 
     protected function getAttributeValue($string): string
     {
         $outputTextColor = config('db-shell.colors.vertical.column_data', 'white');
+
         return $this->lineDecorator->getDecoratedLine($string, $outputTextColor);
     }
 
@@ -97,6 +100,7 @@ class Vertical extends BaseStatement implements StatementInterface
         if ($this->longestKey < 1) {
             $this->calculateLongestKey();
         }
+
         return $this->longestKey;
     }
 }
