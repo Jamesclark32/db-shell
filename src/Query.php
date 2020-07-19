@@ -41,6 +41,7 @@ class Query
     public function setHadError(bool $hadError): self
     {
         $this->hadError = $hadError;
+
         return $this;
     }
 

@@ -30,14 +30,16 @@ class History
 
         readline_add_history($query);
         $this->history[] = $query;
-        file_put_contents($this->getHistoryFilePath(), PHP_EOL . trim($query), FILE_APPEND);
+        file_put_contents($this->getHistoryFilePath(), PHP_EOL.trim($query), FILE_APPEND);
+
         return true;
     }
 
     protected function getHistoryFilePath(): string
     {
         $baseDir = Arr::get($_SERVER, 'HOME');
-        return $baseDir . '/.mysql_history';
+
+        return $baseDir.'/.mysql_history';
     }
 
     protected function matchesLastHistoryEntry(string $query): bool

@@ -82,15 +82,12 @@ class DbShellCommand extends Command
         $queries = $this->inputWrapper->setConnectionName($this->connection)->getUserInput();
 
         foreach ($queries as $query) {
-
             $this->query = $query;
 
             $this->reconnectIfShould();
 
             if ($this->query->getNormalizedQueryText()) {
-
                 if ($this->query->getNormalizedQueryText() === 'exit') {
-
                     $this->outputWrapper->outputExit();
 
                     exit;
@@ -105,7 +102,7 @@ class DbShellCommand extends Command
     {
         $this->testConnection();
 
-        if (!DB::connection()->getDatabaseName()) {
+        if (! DB::connection()->getDatabaseName()) {
             $this->outputWrapper->outputReconnecting();
             DB::reconnect();
             $this->testConnection();
@@ -115,7 +112,7 @@ class DbShellCommand extends Command
     protected function processQuery(): void
     {
         $results = $this->dbWrapper->setQuery($this->query)->execute();
-        if (!$results) {
+        if (! $results) {
             $results = [];
         }
 

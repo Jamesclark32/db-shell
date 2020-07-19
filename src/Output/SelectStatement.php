@@ -13,6 +13,7 @@ class SelectStatement extends BaseStatement implements StatementInterface
         if ($this->getIsShowTable()) {
             $this->renderTable();
             $this->renderFooterIfShould();
+
             return;
         }
         $this->renderVertical();
@@ -54,21 +55,21 @@ class SelectStatement extends BaseStatement implements StatementInterface
         }
 
         if (config('db-shell.automatically_switch_to_table_display', false) === true) {
-
             $tableWidth = $this->getTableWidth();
 
             [$height, $width] = explode(' ', exec('stty size'));
 
-            if ((int)$width < $tableWidth) {
+            if ((int) $width < $tableWidth) {
                 return false;
             }
         }
+
         return true;
     }
 
     protected function renderFooterIfShould(): void
     {
-        if (!$this->query->hadError()) {
+        if (! $this->query->hadError()) {
             $this->outputFooter(count($this->results), $this->processingTime);
         }
     }
@@ -88,7 +89,6 @@ class SelectStatement extends BaseStatement implements StatementInterface
     protected function getTableWidth(): int
     {
         $columns = $this->getColumns();
-
 
         $maxLengths = [];
         foreach ($columns as $column) {
@@ -113,6 +113,7 @@ class SelectStatement extends BaseStatement implements StatementInterface
         if (is_array($firstRow)) {
             return array_keys($firstRow);
         }
+
         return [];
     }
 }
