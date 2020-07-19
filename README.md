@@ -9,6 +9,7 @@
 - [Configuration](#configuration)
 - [Usage](#usage)
 - [Value Added](#value-added)
+- [CHANGELOG](#changelog)
 - [Drop me a line](#drop-me-a-line)
 
 ## Introduction
@@ -70,6 +71,8 @@ When compared to using the traditional MySQL CLI client, db-shell offers a few s
 
 ![A typical db shell session](documentation/db-shell-warning.png)
 
+## Changelog
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
 ## Drop me a line
 If you're using this package, I'd love to hear your thoughts about it at [james@weno.net](mailto:james@weno.net)!
