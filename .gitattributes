@@ -1,4 +1,6 @@
 .gitattributes      export-ignore
+/.github/           export-ignore
 /.gitignore         export-ignore
+/.styleci.yml       export-ignore
 /phpunit.xlm.dist   export-ignore
 /tests              export-ignore
