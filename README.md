@@ -1,94 +1,72 @@
+[TODO] badget
 
 ## Contents
 [TODO]
 
-## What is this? 
+## Introduction
+DbShell adds an artisan command to your Laravel application which mimics the mysql command line client.
 
-DbShell adds an artisan command which mimics the mysql command line client.
-
-This allows you to interact with the database directly via straight sql.
-
+This allows you to interact with the database in a simplistic CLI interface using direct SQL statements.
 
 ![A typical db shell session](documentation/db-shell.png)
 
 
 ## Why?
 
-The short version is: to avoid installing software on the host machine which is otherwise not needed.
+In short, to avoid installing software on the host machine which is otherwise not needed.
 
 Refer to the [why documentation](documentation/why.md) if you are interested in more details about the motivation for this package.
 
+
 ## Installation
-Installing db-shell is a straightforward matter. To add db-shell to your project as a dev dependency, simply run:
+Installing db-shell is a straightforward matter using standard composer commands. 
 
-`composer require-dev Jamesclark32/db-shell`
+```shell
+composer require Jamesclark32/db-shell
+```
+You may wish to include the package only in developement environments, and prevent it's inclusion on production environments. In this case, replace `require` with `require-dev`
 
-If you would like db-shell available on your production installation(s) as well: 
+## Configuration
 
-`composer require Jamesclark32/db-shell`
+If you want to fine-tune the configuration, colors, or language file you will need to publish them by running:
 
-## Publishing Config
-If you want to fine-tune the configuration, or language file you will need to publish them by running:
+```shell
+php artisan vendor:publish --provider="Jamesclark32\DbShell\DbShellServiceProvider"
+```
 
-`php artisan vendor:publish --provider="Jamesclark32\DbShell\DbShellServiceProvider"`
-
-This will copy the files to your project's `config/` and `language/vendor` folders, where you can modify them as you see fit. 
+This will copy files to your project:
+```
+config/db-shell.php
+language/vendor/db-shell/
+``` 
+ 
+ You can modify these files as you see fit. Refer to the  [configuration documentation](documentation/configuration.md) for details on fine-tuning your installation.
 
 ## Usage
 
 Once installed, you can launch the db-shell interface via:
 
-`php artisan db-shell`
+```shell
+php artisan db-shell
+```
 
 This will start a long-running process which will allow you to directly input sql queries and see the results.
 
 For the most part, this will behave like the mysql cli client.
 
-You can exit the interface at any time by typing `exit`. Pressing `control + C` currently also exits, but this is considered a bug.  
+You can exit the interface at any time by typing `exit`. 
 
-## Configuration
-See the Publishing Configs section for instructions to make the config file available to modify.
+## Value Added
 
-This section is a bit vague. Sorry about that! Hopefully I flesh it out soon.
-Currently you can configure: 
-    colors
-    override connection vars
-    confirm display of large result sets
+When compared to using the traditional MySQL CLI client, db-shell offers a few small niceties. 
 
-### Overriding connection variables
-  Out of the box db-shell will use laravel's default database connection.
-   
-  Overriding these settings is possible via these connection variables.
-  
-  While it is certainly possible to set them directly in this config, it is intended to alter any or all of them  via these env vars:
-            
-   
-    DB-SHELL_HOST
-    DB-SHELL_PORT
-    DB-SHELL_DATABASE
-    DB-SHELL_USERNAME
-    DB-SHELL_PASSWORD
-    DB-SHELL_SOCKET
- 
- db-shell will continue to use the default connection, however, during startup, the variables will be overwritten with these variables and then connection reinitialized during.
- 
- 
- ### Overriding locale and language
- out of the box, db-shell will use the global local set in laravel's config/app.php file. If you want to override this specifically for db-shell for any reason, that can be done in the db-shell config by setting the locale variable. 
- Available locales are currently en and cat. If you are able to translate into any other language, I would love to see your contribution! 
- 
+1. Colorized output.
+2. Automatic switching between tabular and vertical output based on terminal width of result set size
+3. Display verification for very large result sets.
+
+![A typical db shell session](documentation/db-shell-warning.png)
 
 
 ## Drop me a line!
 
-If you're using this package, I'd love to hear your thoughts about it! 
- 
-## TODO: 
-
-add tests
-
-improve documentation. flesh out information and add some pictures. 'value added' section
-
-rename from laravel db shell to db shell
-
-non-laravel specific version?
+If you're using this package, I'd love to hear your thoughts about it at [james@weno.net](mailto:james@weno.net)!
