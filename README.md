@@ -1,5 +1,6 @@
 ![GitHub](https://img.shields.io/github/license/Jamesclark32/db-shell)
 ![Tests](https://github.com/Jamesclark32/db-shell/workflows/Tests/badge.svg?branch=master)
+![StyleCI](https://github.styleci.io/repos/7548986/shield?style=plastic)
 ![GitHub All Releases](https://img.shields.io/github/downloads/Jamesclark32/db-shell/total)
 
 ## Table of Contents
