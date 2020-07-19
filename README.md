@@ -1,13 +1,13 @@
 ## Table of Contents
-[Introduction](##Introduction) 
-[Why](##Why) 
-[Installation](##Installation)
-[Configuration](##Configuration)
-[Usage](##Usage)
-[Value Added](##Value Added)
-[Drop me a line!](##Drop me a line!)
+- [Introduction](#introduction) 
+- [Why](#why) 
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Value Added](#value-added)
+- [Drop me a line](#drop-me-a-line)
 
-##Introduction
+## Introduction
 DbShell adds an artisan command to your Laravel application which mimics the mysql command line client.
 
 This allows you to interact with the database in a simplistic CLI interface using direct SQL statements.
@@ -15,13 +15,13 @@ This allows you to interact with the database in a simplistic CLI interface usin
 ![A typical db shell session](documentation/db-shell.png)
 
 
-##Why?
+## Why?
 In short, to avoid installing software on the host machine which is otherwise not needed.
 
 Refer to the [why documentation](documentation/why.md) if you are interested in more details about the motivation for this package.
 
 
-##Installation
+## Installation
 Installing db-shell is a straightforward matter using standard composer commands. 
 
 ```shell
@@ -29,7 +29,7 @@ composer require Jamesclark32/db-shell
 ```
 You may wish to include the package only in developement environments, and prevent it's inclusion on production environments. In this case, replace `require` with `require-dev`
 
-##Configuration
+## Configuration
 If you want to fine-tune the configuration, colors, or language file you will need to publish them by running:
 
 ```shell
@@ -44,7 +44,7 @@ language/vendor/db-shell/
  
  You can modify these files as you see fit. Refer to the  [configuration documentation](documentation/configuration.md) for details on fine-tuning your installation.
 
-##Usage
+## Usage
 Once installed, you can launch the db-shell interface via:
 
 ```shell
@@ -57,7 +57,7 @@ For the most part, this will behave like the mysql cli client.
 
 You can exit the interface at any time by typing `exit`. 
 
-##Value Added
+## Value Added
 When compared to using the traditional MySQL CLI client, db-shell offers a few small niceties. 
 
 1. Colorized output.
@@ -67,5 +67,5 @@ When compared to using the traditional MySQL CLI client, db-shell offers a few s
 ![A typical db shell session](documentation/db-shell-warning.png)
 
 
-##Drop me a line!
+## Drop me a line
 If you're using this package, I'd love to hear your thoughts about it at [james@weno.net](mailto:james@weno.net)!
