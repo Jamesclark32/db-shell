@@ -16,11 +16,11 @@ class DbShellServiceProvider extends ServiceProvider
 
         $this->overwriteDatabaseConfig();
 
-        $this->loadTranslationsFrom(__DIR__ . '/../lang/', 'db-shell');
+        $this->loadTranslationsFrom(__DIR__.'/../lang/', 'db-shell');
 
         $this->publishes([
-            __DIR__ . '/../config/db-shell.php' => config_path('db-shell.php'),
-            __DIR__ . '/../lang/' => resource_path('lang/vendor/db-shell'),
+            __DIR__.'/../config/db-shell.php' => config_path('db-shell.php'),
+            __DIR__.'/../lang/' => resource_path('lang/vendor/db-shell'),
         ]);
 
         if ($this->app->runningInConsole()) {
@@ -37,7 +37,7 @@ class DbShellServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/db-shell.php', 'db-shell');
+        $this->mergeConfigFrom(__DIR__.'/../config/db-shell.php', 'db-shell');
     }
 
     protected function overwriteDatabaseConfig(): void
@@ -45,7 +45,7 @@ class DbShellServiceProvider extends ServiceProvider
         $this->getPasswordIfShould();
 
         foreach ($this->getDatabaseVariableNames() as $databaseVariableName) {
-            $value = config('db-shell.connection.' . $databaseVariableName, null);
+            $value = config('db-shell.connection.'.$databaseVariableName, null);
             if ($value) {
                 $this->setDatabaseConfig($databaseVariableName, $value);
             }
@@ -65,12 +65,12 @@ class DbShellServiceProvider extends ServiceProvider
 
     protected function getAvailableLanguagePacks(): array
     {
-        return array_diff(scandir(__DIR__ . '/../lang/'), ['.', '..']);
+        return array_diff(scandir(__DIR__.'/../lang/'), ['.', '..']);
     }
 
     protected function setDatabaseConfig(string $configName, string $value): void
     {
-        Config::set('database.connections.' . config('database.default') . '.' . $configName, $value);
+        Config::set('database.connections.'.config('database.default').'.'.$configName, $value);
     }
 
     protected function getDatabaseVariableNames(): array
@@ -88,18 +88,17 @@ class DbShellServiceProvider extends ServiceProvider
     protected function getPasswordIfShould(): void
     {
         if (config('db-shell.prompt_for_password', false) === true) {
-
             echo trans('db-shell::input_prompts.password', [
                 'username' => config('db-shell.connection.username'),
                 'host' => config('db-shell.connection.host'),
                 'database' => config('db-shell.connection.database'),
             ]);
 
-            $file = popen("read -s; echo \$REPLY", "r");
+            $file = popen('read -s; echo $REPLY', 'r');
             $password = fgets($file, 100);
             pclose($file);
 
-            Config::set('database.connections.' . config('database.default') . '.password', $password);
+            Config::set('database.connections.'.config('database.default').'.password', $password);
         }
     }
 }

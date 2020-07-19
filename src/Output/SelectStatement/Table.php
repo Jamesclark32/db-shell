@@ -42,6 +42,7 @@ class Table extends BaseStatement implements StatementInterface
     {
         $tableStyle = app(TableStyle::class);
         $this->getStyles($tableStyle);
+
         return $tableStyle;
     }
 

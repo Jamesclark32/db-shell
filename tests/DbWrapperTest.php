@@ -43,17 +43,17 @@ class DbWrapperTest extends LaravelTestBase
         $uniqueId = uniqid();
 
         return [
-            'CREATE TABLE `table_' . $uniqueId . '` (first_name VARCHAR(255), last_name VARCHAR(255))',
-            'INSERT INTO `table_' . $uniqueId . '` (first_name, last_name) values ("James", "Clark")',
-            'SELECT * FROM `table_' . $uniqueId . '`',
-            'INSERT INTO `table_' . $uniqueId . '` (first_name, last_name) values ("John", "Smith")',
-            'UPDATE `table_' . $uniqueId . '` SET first_name = "Joe" where first_name="John"',
-            'DELETE FROM `table_' . $uniqueId . '` WHERE first_name = "Joe"',
-            'SELECT * FROM `table_' . $uniqueId . '`',
-            'SELECT * FROM `table_' . $uniqueId . '`\g',
-            'SELECT * FROM `table_' . $uniqueId . '`\G',
-            'SELECT DATE(); SELECT * FROM `table_' . $uniqueId . '`;',
-            'DROP TABLE `table_' . $uniqueId . '`',
+            'CREATE TABLE `table_'.$uniqueId.'` (first_name VARCHAR(255), last_name VARCHAR(255))',
+            'INSERT INTO `table_'.$uniqueId.'` (first_name, last_name) values ("James", "Clark")',
+            'SELECT * FROM `table_'.$uniqueId.'`',
+            'INSERT INTO `table_'.$uniqueId.'` (first_name, last_name) values ("John", "Smith")',
+            'UPDATE `table_'.$uniqueId.'` SET first_name = "Joe" where first_name="John"',
+            'DELETE FROM `table_'.$uniqueId.'` WHERE first_name = "Joe"',
+            'SELECT * FROM `table_'.$uniqueId.'`',
+            'SELECT * FROM `table_'.$uniqueId.'`\g',
+            'SELECT * FROM `table_'.$uniqueId.'`\G',
+            'SELECT DATE(); SELECT * FROM `table_'.$uniqueId.'`;',
+            'DROP TABLE `table_'.$uniqueId.'`',
         ];
     }
 

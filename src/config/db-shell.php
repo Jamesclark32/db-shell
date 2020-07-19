@@ -40,15 +40,15 @@ return [
      *      DB-SHELL_SOCKET
      */
     'connection' => [
-        'host' => env('DB-SHELL_HOST', config('database.connections.' . config('database.default') . '.host')),
-        'port' => env('DB-SHELL_HOST', config('database.connections.' . config('database.default') . '.port')),
+        'host' => env('DB-SHELL_HOST', config('database.connections.'.config('database.default').'.host')),
+        'port' => env('DB-SHELL_HOST', config('database.connections.'.config('database.default').'.port')),
         'database' => env('DB-SHELL_DATABASE',
-            config('database.connections.' . config('database.default') . '.database')),
+            config('database.connections.'.config('database.default').'.database')),
         'username' => env('DB-SHELL_USERNAME',
-            config('database.connections.' . config('database.default') . '.username')),
+            config('database.connections.'.config('database.default').'.username')),
         'password' => env('DB-SHELL_PASSWORD',
-            config('database.connections.' . config('database.default') . '.password')),
-        'socket' => env('DB-SHELL_SOCKET', config('database.connections.' . config('database.default') . '.socket')),
+            config('database.connections.'.config('database.default').'.password')),
+        'socket' => env('DB-SHELL_SOCKET', config('database.connections.'.config('database.default').'.socket')),
     ],
 
     /*

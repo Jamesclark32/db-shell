@@ -12,7 +12,6 @@ class InputWrapperTest extends TestCase
         $inputWrapper = app()->make(InputWrapper::class);
 
         foreach ($this->getTransformations() as $before => $after) {
-
             $inputWrapper->setUserInput($before);
             $query = $inputWrapper->getQuery();
             $normalized = $query->getNormalizedQueryText();
