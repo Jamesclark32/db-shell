@@ -1,7 +1,6 @@
 ![GitHub](https://img.shields.io/github/license/Jamesclark32/db-shell)
 ![Tests](https://github.com/Jamesclark32/db-shell/workflows/Tests/badge.svg?branch=master)
 ![StyleCI](https://github.styleci.io/repos/7548986/shield?style=plastic)
-![GitHub All Releases](https://img.shields.io/github/downloads/Jamesclark32/db-shell/total)
 
 ## Table of Contents
 - [Introduction](#introduction) 
@@ -67,7 +66,7 @@ You can exit the interface at any time by typing `exit`.
 When compared to using the traditional MySQL CLI client, db-shell offers a few small niceties. 
 
 1. Colorized output.
-2. Automatic switching between tabular and vertical output based on terminal width of result set size
+2. Automatic switching between tabular and vertical output based on terminal width versus width of result set size
 3. Display verification for very large result sets.
 
 ![A typical db shell session](documentation/db-shell-warning.png)
