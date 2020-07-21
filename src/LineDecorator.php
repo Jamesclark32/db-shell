@@ -4,7 +4,7 @@ namespace JamesClark32\DbShell;
 
 class LineDecorator
 {
-    public function getDecoratedLine(string $text, string $color): string
+    public function getDecoratedLine(string $text = null, string $color = 'white'): string
     {
         if (substr($color, 0, 4) === 'bold') {
             return $this->getFormatStringOpen(substr($color, 4), true).$text.$this->getFormatStringClose();
