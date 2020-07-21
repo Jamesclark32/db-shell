@@ -1,6 +1,6 @@
 {
   "name": "jamesclark32/db-shell",
-  "description": "Adds an artisan command, db:shell to a Laravel installation which provides rudimentary sql shell functionality",
+  "description": "Adds an artisan command, db:shell, to a Laravel installation which provides rudimentary interactive sql shell functionality",
   "type": "library",
   "license": "MIT",
   "authors": [
