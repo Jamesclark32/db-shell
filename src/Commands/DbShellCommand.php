@@ -102,7 +102,7 @@ class DbShellCommand extends Command
     {
         $this->testConnection();
 
-        if (!DB::connection()->getDatabaseName()) {
+        if (! DB::connection()->getDatabaseName()) {
             $this->outputWrapper->outputReconnecting();
             DB::reconnect();
             $this->testConnection();
@@ -119,7 +119,7 @@ class DbShellCommand extends Command
     protected function processQuery(): void
     {
         $results = $this->dbWrapper->setQuery($this->query)->execute();
-        if (!$results) {
+        if (! $results) {
             $results = [];
         }
 
