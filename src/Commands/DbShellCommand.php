@@ -102,17 +102,24 @@ class DbShellCommand extends Command
     {
         $this->testConnection();
 
-        if (! DB::connection()->getDatabaseName()) {
+        if (!DB::connection()->getDatabaseName()) {
             $this->outputWrapper->outputReconnecting();
             DB::reconnect();
             $this->testConnection();
+        }
+
+        try {
+            DB::connection()->getPdo()->exec('SELECT 1');
+        } catch (\Exception $e) {
+            $this->outputWrapper->outputReconnecting();
+            DB::reconnect();
         }
     }
 
     protected function processQuery(): void
     {
         $results = $this->dbWrapper->setQuery($this->query)->execute();
-        if (! $results) {
+        if (!$results) {
             $results = [];
         }
 
@@ -130,13 +137,15 @@ class DbShellCommand extends Command
         try {
             DB::connection()->getPdo();
         } catch (\Exception $e) {
-            $this->outputWrapper->setResults([
-                'error' => [
-                    'errorCode' => $e->getCode(),
-                    'errorNumber' => $e->getCode(),
-                    'errorMessage' => $e->getMessage(),
-                ],
-            ])->outputError();
+            $this->outputWrapper->setResults(
+                [
+                    'error' => [
+                        'errorCode' => $e->getCode(),
+                        'errorNumber' => $e->getCode(),
+                        'errorMessage' => $e->getMessage(),
+                    ],
+                ]
+            )->outputError();
 
             $this->output->warning(trans('db-shell::output.connection_error'));
             exit;
