@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.4
+- Patch to fix bug with database ping added in 1.0.3.
+
 ## 1.0.3
 - Patch to ping database on every execution and reconnect if needed. This resolve need to restart command after long periods without usage.
 
