@@ -101,7 +101,7 @@ class DbShellCommand extends Command
     protected function reconnectIfShould(): void
     {
         try {
-            DB::connection()->getPdo()->exec('SELECT 1');
+            DB::select('SELECT 1');
         } catch (\Exception $e) {
             $this->outputWrapper->outputReconnecting();
             DB::reconnect();
