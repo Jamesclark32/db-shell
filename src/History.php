@@ -10,7 +10,11 @@ class History
 
     public function loadHistory(): void
     {
-        $history = file($this->getHistoryFilePath());
+        $filePath = $this->getHistoryFilePath();
+        if (! file_exists($filePath)) {
+            file_put_contents($filePath, PHP_EOL);
+        } 
+        $history = file($filePath);
 
         foreach ($history as $query) {
             readline_add_history(str_replace('\040', ' ', $query));
