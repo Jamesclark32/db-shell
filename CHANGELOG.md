@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.6
+- Handle missing .mysql_history files sanely.
+
+## 1.0.5
+- Patch
+
 ## 1.0.4
 - Patch to fix bug with database ping added in 1.0.3.
 
