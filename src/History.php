@@ -13,7 +13,7 @@ class History
         $filePath = $this->getHistoryFilePath();
         if (! file_exists($filePath)) {
             file_put_contents($filePath, PHP_EOL);
-        } 
+        }
         $history = file($filePath);
 
         foreach ($history as $query) {
