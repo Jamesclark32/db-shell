@@ -166,6 +166,7 @@ class DbShellCommand extends Command
     public function setLastUseCommand(?string $lastUseCommand): self
     {
         $this->lastUseCommand = $lastUseCommand;
+
         return $this;
     }
 }
