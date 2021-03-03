@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.7
+- Rerun last use query during a dropped connection recovery.
+
 ## 1.0.6
 - Handle missing .mysql_history files sanely.
 
