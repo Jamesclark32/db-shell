@@ -1,17 +1,24 @@
 {
   "name": "jamesclark32/db-shell",
   "description": "Adds an artisan command, db:shell, to a Laravel installation which provides rudimentary interactive sql shell functionality",
-  "type": "library",
+  "keywords": [
+    "JamesClark32",
+    "db-shell"
+  ],
+  "homepage": "https://github.com/jamesclark32/db-shell",
   "license": "MIT",
   "authors": [
     {
       "name": "James Clark",
-      "email": "james@weno.net"
+      "email": "james@weno.net",
+      "role": "Developer"
     }
   ],
   "minimum-stability": "stable",
   "require": {
-    "ext-readline": "*"
+    "php": "^8.0",
+    "ext-readline": "*",
+    "ext-pcntl": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "^9.2",

@@ -14,13 +14,14 @@ class DbShellCommand extends Command
 {
     protected $description = 'Launches the user into an interactive database shell';
     protected $signature = 'db:shell';
+    protected ?string $lastUseCommand = null;
     protected DbWrapper $dbWrapper;
+    protected History $history;
     protected InputWrapper $inputWrapper;
+    protected int $signalCount = 0;
     protected OutputWrapper $outputWrapper;
     protected Query $query;
-    protected History $history;
     protected string $connection;
-    protected int $signalCount = 0;
 
     public function __construct(
         DbWrapper $dbWrapper,
@@ -105,6 +106,22 @@ class DbShellCommand extends Command
         } catch (\Exception $e) {
             $this->outputWrapper->outputReconnecting();
             DB::reconnect();
+
+            // Reconnecting, so rerun last use statement.
+            if ($this->lastUseCommand) {
+                $results = $this->dbWrapper->setQuery($this->lastUseQuery)->execute();
+                if (! $results) {
+                    $results = [];
+                }
+
+                $this->outputWrapper
+                    ->setOutput($this->output)
+                    ->setProcessingTime($this->dbWrapper->getProcessingTime())
+                    ->setQuery($this->query)
+                    ->setResults($results);
+
+                $this->outputWrapper->render();
+            }
         }
 
         $this->testConnection();
@@ -144,5 +161,11 @@ class DbShellCommand extends Command
             $this->output->warning(trans('db-shell::output.connection_error'));
             exit;
         }
+    }
+
+    public function setLastUseCommand(?string $lastUseCommand): self
+    {
+        $this->lastUseCommand = $lastUseCommand;
+        return $this;
     }
 }
