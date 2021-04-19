@@ -62,6 +62,11 @@ For the most part, this will behave like the mysql cli client.
 
 You can exit the interface at any time by typing `exit`. 
 
+## Working with Multiple Connections
+If you have multiple connections defined in your Laravel application, you can easily switch between them by typing 'connections'.
+
+A listing of connections will be displayed, and a prompt to select one presented.
+
 ## Value Added
 When compared to using the traditional MySQL CLI client, db-shell offers a few small niceties. 
 
