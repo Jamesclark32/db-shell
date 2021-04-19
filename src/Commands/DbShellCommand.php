@@ -96,7 +96,6 @@ class DbShellCommand extends Command
                 if ($this->query->getQueryType() === 'connections') {
                     $connections = config('database.connections');
                     foreach ($connections as $connectionName => $connection) {
-
                         $tableHeadings = [
                             'Connection Name',
                             'Hostname',
@@ -119,6 +118,7 @@ class DbShellCommand extends Command
                     $newConnectionName = $this->anticipate('Which "Connection Name" would you like to use?',
                         array_keys($connections));
                     $this->connection = $newConnectionName;
+
                     return;
                 }
 
@@ -128,6 +128,7 @@ class DbShellCommand extends Command
                     $this->output->writeln(trans('db-shell::output.connections.switch', [
                         'connectionName' => $this->connection,
                     ]));
+
                     return;
                 }
 
@@ -151,7 +152,7 @@ class DbShellCommand extends Command
     protected function processQuery(): void
     {
         $results = $this->dbWrapper->setQuery($this->query)->execute();
-        if (!$results) {
+        if (! $results) {
             $results = [];
         }
 
