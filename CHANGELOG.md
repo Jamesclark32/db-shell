@@ -1,4 +1,6 @@
 # Changelog
+## 1.0.8
+- Iniitial support for handling multiple connections. Add 'connections' command to display all connections configured in laravel and switch between them. Ensure queries work as expected, although updating and deleting operations may still require work.
 
 ## 1.0.7
 - Rerun last use query during a dropped connection recovery.
