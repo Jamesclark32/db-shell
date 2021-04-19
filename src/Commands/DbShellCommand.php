@@ -14,14 +14,13 @@ class DbShellCommand extends Command
 {
     protected $description = 'Launches the user into an interactive database shell';
     protected $signature = 'db:shell';
-    protected ?string $lastUseCommand = null;
     protected DbWrapper $dbWrapper;
-    protected History $history;
     protected InputWrapper $inputWrapper;
-    protected int $signalCount = 0;
     protected OutputWrapper $outputWrapper;
     protected Query $query;
+    protected History $history;
     protected string $connection;
+    protected int $signalCount = 0;
 
     public function __construct(
         DbWrapper $dbWrapper,
@@ -94,6 +93,44 @@ class DbShellCommand extends Command
                     exit;
                 }
 
+                if ($this->query->getQueryType() === 'connections') {
+                    $connections = config('database.connections');
+                    foreach ($connections as $connectionName => $connection) {
+
+                        $tableHeadings = [
+                            'Connection Name',
+                            'Hostname',
+                            'Port',
+                            'Username',
+                            'Database',
+                        ];
+
+                        $tableData[] = [
+                            'connectionName' => $connectionName,
+                            'hostname' => $connection['host'],
+                            'port' => $connection['port'],
+                            'username' => $connection['username'],
+                            'database' => $connection['database'],
+                        ];
+                    }
+
+                    $this->output->table($tableHeadings, $tableData);
+
+                    $newConnectionName = $this->anticipate('Which "Connection Name" would you like to use?',
+                        array_keys($connections));
+                    $this->connection = $newConnectionName;
+                    return;
+                }
+
+                if ($this->query->getQueryType() === 'connection') {
+                    $this->connection = substr($this->query->getNormalizedQueryText(), 11);
+                    $this->dbWrapper->setConnection($this->connection);
+                    $this->output->writeln(trans('db-shell::output.connections.switch', [
+                        'connectionName' => $this->connection,
+                    ]));
+                    return;
+                }
+
                 $this->processQuery();
             }
         }
@@ -106,22 +143,6 @@ class DbShellCommand extends Command
         } catch (\Exception $e) {
             $this->outputWrapper->outputReconnecting();
             DB::reconnect();
-
-            // Reconnecting, so rerun last use statement.
-            if ($this->lastUseCommand) {
-                $results = $this->dbWrapper->setQuery($this->lastUseQuery)->execute();
-                if (! $results) {
-                    $results = [];
-                }
-
-                $this->outputWrapper
-                    ->setOutput($this->output)
-                    ->setProcessingTime($this->dbWrapper->getProcessingTime())
-                    ->setQuery($this->query)
-                    ->setResults($results);
-
-                $this->outputWrapper->render();
-            }
         }
 
         $this->testConnection();
@@ -130,7 +151,7 @@ class DbShellCommand extends Command
     protected function processQuery(): void
     {
         $results = $this->dbWrapper->setQuery($this->query)->execute();
-        if (! $results) {
+        if (!$results) {
             $results = [];
         }
 
@@ -161,12 +182,5 @@ class DbShellCommand extends Command
             $this->output->warning(trans('db-shell::output.connection_error'));
             exit;
         }
-    }
-
-    public function setLastUseCommand(?string $lastUseCommand): self
-    {
-        $this->lastUseCommand = $lastUseCommand;
-
-        return $this;
     }
 }

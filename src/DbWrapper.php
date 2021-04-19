@@ -10,6 +10,7 @@ class DbWrapper
     protected Query $query;
     protected float $processingTime;
     protected ?array $results = [];
+    private string $connection = 'mysql';
 
     public function execute(): ?array
     {
@@ -18,6 +19,11 @@ class DbWrapper
         $this->processingTime = microtime(true) - $startProcessingTime;
 
         return $this->results;
+    }
+
+    public function setConnection(string $connection)
+    {
+        $this->connection = $connection;
     }
 
     public function setQuery(Query $query): self
@@ -53,7 +59,7 @@ class DbWrapper
 
     protected function executeSelectQuery(): ?array
     {
-        return DB::connection()->getPdo()->query($this->query->getNormalizedQueryText())->fetchAll(\PDO::FETCH_ASSOC);
+        return DB::connection($this->connection)->getPdo()->query($this->query->getNormalizedQueryText())->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     protected function executeCreateQuery(): ?array
@@ -67,7 +73,7 @@ class DbWrapper
 
     protected function executeUseQuery(): void
     {
-        DB::connection()->getPdo()->exec($this->query->getNormalizedQueryText());
+        DB::connection($this->connection)->getPdo()->exec($this->query->getNormalizedQueryText());
     }
 
     protected function executeInsertQuery(): ?array

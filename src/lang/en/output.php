@@ -16,4 +16,8 @@ return [
     'vertical' => [
         'row_number' => ' row :rowNumber ',
     ],
+    'connections' => [
+        'summary' => ' - :connectionName (user :username@ on host :hostname, port :port, database :database)',
+        'switch' => 'Switching to laravel connection ":connectionName".',
+    ],
 ];
